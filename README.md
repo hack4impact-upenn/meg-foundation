@@ -1,6 +1,6 @@
 # Set Up
 
-# Dowloading dependencies:
+## Dowloading dependencies:
 
 ```bash
 $ yarn setup
