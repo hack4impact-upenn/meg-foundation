@@ -15,10 +15,7 @@ function IndexPage() {
     <div className="container center">
       <header className="hero">
         <div className="hero-body">
-          <h1 className="title">Hello world: Index</h1>
-          <h2 className="subtitle">
-            A list of users retrieved from <code>/api/users</code>.
-          </h2>
+          <h1 className="title">Welcome to Meg Foundation!</h1>
         </div>
       </header>
       {isLoading ? (
