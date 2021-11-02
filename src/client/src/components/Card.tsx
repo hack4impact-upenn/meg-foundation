@@ -150,6 +150,7 @@ const Card = (props) => {
               display: 'flex',
               flexDirection: 'row',
               justifyContent: 'space-between',
+              alignItems: 'center',
               marginLeft: '10px',
               marginRight: '10px',
               //fontSize: '20px'
@@ -160,12 +161,22 @@ const Card = (props) => {
             {/* </Titlebar> */}
           </div>
           <div
-            style={{ height: '2px', width: '75px', backgroundColor: '#82B500' }}
+            style={{
+              height: '2px',
+              width: '75px',
+              backgroundColor: '#82B500',
+              marginLeft: '10px',
+              marginRight: '10px',
+            }}
           />
           <div
             style={{
-              height: expanded ? '500px' : '100px',
+              height: expanded ? 'auto' : '100px',
               overflow: 'hidden',
+              marginLeft: '10px',
+              marginRight: '10px',
+              marginTop: '10px',
+              marginBottom: '15px',
               fontSize: '12px',
             }}
           >
@@ -176,8 +187,10 @@ const Card = (props) => {
             style={{
               backgroundColor: '#E5E5E5',
               borderRadius: '0px 0px 10px 10px',
+              display: 'flex',
               justifyContent: 'space-around',
               fontSize: '12px',
+              alignItems: 'center',
             }}
           >
             Learn More
