@@ -34,10 +34,12 @@ const Container = styled.div`
 `;
 
 const Button = styled.div`
+  font-size: '10px';
   border-radius: 30px;
   border-style: solid;
   border-width: 1px;
   border-color: #1aabb8;
+  color: #1aabb8;
   overflow: hidden;
   padding: 10px;
   background-color: #ffffff;
@@ -150,6 +152,7 @@ const Card = (props) => {
               justifyContent: 'space-between',
               marginLeft: '10px',
               marginRight: '10px',
+              //fontSize: '20px'
             }}
           >
             <div>{title}</div>
@@ -160,7 +163,11 @@ const Card = (props) => {
             style={{ height: '2px', width: '75px', backgroundColor: '#82B500' }}
           />
           <div
-            style={{ height: expanded ? '500px' : '100px', overflow: 'hidden' }}
+            style={{
+              height: expanded ? '500px' : '100px',
+              overflow: 'hidden',
+              fontSize: '12px',
+            }}
           >
             {description}
           </div>
@@ -170,6 +177,7 @@ const Card = (props) => {
               backgroundColor: '#E5E5E5',
               borderRadius: '0px 0px 10px 10px',
               justifyContent: 'space-around',
+              fontSize: '12px',
             }}
           >
             Learn More
