@@ -157,7 +157,7 @@ const Card = (props) => {
             }}
           >
             <div>{title}</div>
-            <Button>+ Add to Plan</Button>
+            <Button style={{ fontSize: '10px' }}>+ Add to Plan</Button>
             {/* </Titlebar> */}
           </div>
           <div
