@@ -20,7 +20,28 @@ function IndexPage() {
         </div>
       </header>
       <div>
-        <Card />
+        <Card
+          title="Title"
+          description="Baby back, ayy
+Couple racks, ayy
+Couple Grammys on him
+Couple plaques, ayy
+That's a fact, ayy
+Throw it back, ayy
+Throw it back, ayy
+And this one is for the champions
+I ain't lost since I began, yeah
+Funny how you said it was the end, yeah
+Then I went did it again, yeah
+I told you long ago, on the road
+I got what they waitin' for
+I don't run from nothin', dog
+Get your soldiers, tell 'em I ain't layin' low
+You was never really rootin' for me anyway
+When I'm back up at the top I wanna hear you say
+He don't run from nothin', dog
+Get your soldiers, tell em that the break is over"
+        />
       </div>
       {isLoading ? (
         'Loading...'

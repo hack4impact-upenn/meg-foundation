@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 // import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
@@ -9,10 +9,13 @@ displayWidth = screenWidth > 1680 ? '24vw' : displayWidth;
 
 const Container = styled.div`
   border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000;
   height: auto;
   overflow: hidden;
   width: ${displayWidth};
-  padding: 10px;
+  padding-top: 10px;
   background-color: ${colors.PURPLE};
   justify-content: center;
   margin: auto;
@@ -30,9 +33,33 @@ const Container = styled.div`
   }
 `;
 
+const Button = styled.div`
+  border-radius: 30px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #1aabb8;
+  overflow: hidden;
+  padding: 10px;
+  background-color: #ffffff;
+  justify-content: center;
+  cursor: pointer;
+  align-items: center;
+  &:hover {
+    box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
+    transition-duration: 0.5s;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 8px;
+    width: auto;
+    margin: auto;
+  }
+`;
+
 const Titlebar = styled.div`
   padding: 0px;
   positon: relative;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const InfoDiv = styled.div`
@@ -103,30 +130,50 @@ const InfoDiv = styled.div`
 // `;
 
 const Card = (props) => {
+  const { title, description, handleClick } = props;
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <div
       className={screenWidth < 1280 ? '' : `is-pulled-left`}
       style={{ marginBottom: '20px', marginLeft: '2px', marginRight: '10px' }}
     >
-      <Container onClick={() => props.handleClick()}>
+      <Container
+      // onClick={() => handleClick()}
+      >
         <div>
-          <Titlebar>
-            {/* <Avatar
-              src={
-                props.org.logoURL
-                  ? 'https://' +
-                    //process.env.AWS_BUCKET_NAME +
-                    'bia-h4i-bucket' +
-                    '.s3.amazonaws.com/' +
-                    props.org.logoURL
-                  : `${process.env.PUBLIC_URL}/home.png`
-              }
-            /> */}
-            {/* <InfoDiv>
-              <OrgName>{props.org.organizationName}</OrgName>
-              <OrgCity>{props.org.headquarterCity}</OrgCity>
-            </InfoDiv> */}
-          </Titlebar>
+          {/* <Titlebar> */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginLeft: '10px',
+              marginRight: '10px',
+            }}
+          >
+            <div>{title}</div>
+            <Button>+ Add to Plan</Button>
+            {/* </Titlebar> */}
+          </div>
+          <div
+            style={{ height: '2px', width: '75px', backgroundColor: '#82B500' }}
+          />
+          <div
+            style={{ height: expanded ? '500px' : '100px', overflow: 'hidden' }}
+          >
+            {description}
+          </div>
+          <div
+            onClick={() => setExpanded(!expanded)}
+            style={{
+              backgroundColor: '#E5E5E5',
+              borderRadius: '0px 0px 10px 10px',
+              justifyContent: 'space-around',
+            }}
+          >
+            Learn More
+          </div>
           {/* <OrgDescription>{props.org.shortDescription}</OrgDescription> */}
         </div>
         {/* <SocialsList org={props.org} /> */}
