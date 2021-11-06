@@ -13,10 +13,7 @@ const router = express.Router();
 
 /* create a new card*/
 router.post('/create', async (req, res) => {
-  const { title } = req.body;
-  const { cardContent } = req.body;
-  const { planContent } = req.body;
-  const { imageLink } = req.body;
+  const { title, cardContent, planContent, imageLink } = req.body;
 
   if (await Card.findOne({ title })) {
     return errorHandler(res, 'Card already exists.');
@@ -39,8 +36,8 @@ router.post('/create', async (req, res) => {
 router.get('/:title', async (req, res) => {
   const { title } = req.params;
   try {
-    const org = await Card.findOne({ title });
-    res.status(200).json({ success: true, data: org });
+    const card = await Card.findOne({ title });
+    res.status(200).json({ success: true, data: card });
   } catch {
     res.status(400).json({ success: false, message: 'unknown error' });
   }
