@@ -20,8 +20,3 @@ const CardSchema = new Schema({
 const Card = mongoose.model<ICard>('Card', CardSchema);
 
 export { Card, ICard };
-
-// create
-// react
-// update
-// delete

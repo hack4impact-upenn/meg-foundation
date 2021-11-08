@@ -1,13 +1,6 @@
 import express from 'express';
-import { hash, compare } from 'bcrypt';
 import { Card, ICard } from '../models/card.model';
-import auth from '../middleware/auth';
 import errorHandler from './error';
-import {
-  generateAccessToken,
-  generateRefreshToken,
-  validateRefreshToken,
-} from './user.util';
 
 const router = express.Router();
 
@@ -33,14 +26,14 @@ router.post('/create', async (req, res) => {
 });
 
 /* fetch card info */
-router.get('/:title', async (req, res) => {
+router.get('/:title', (req, res) => {
   const { title } = req.params;
-  try {
-    const card = await Card.findOne({ title });
-    res.status(200).json({ success: true, data: card });
-  } catch {
-    res.status(400).json({ success: false, message: 'unknown error' });
-  }
+  Card.findOne({ title })
+    .then((card) => {
+      if (!card) return errorHandler(res, 'Card does not exist.');
+      res.status(200).json({ success: true, data: card });
+    })
+    .catch((err) => errorHandler(res, err.message));
 });
 
 /* update an individual card */
@@ -50,19 +43,19 @@ router.put('/:title', async (req, res) => {
 
   if (!card) return errorHandler(res, 'Card does not exist.');
 
-  if (req.hasOwnProperty('title')) {
-    const { title } = req.body;
-    card.title = title;
+  if (Object.prototype.hasOwnProperty.call(req, 'title')) {
+    const newTitle = req.body.title;
+    card.title = newTitle;
   }
-  if (req.hasOwnProperty('cardContent')) {
+  if (Object.prototype.hasOwnProperty.call(req, 'cardContent')) {
     const { cardContent } = req.body;
     card.cardContent = cardContent;
   }
-  if (req.hasOwnProperty('planContent')) {
+  if (Object.prototype.hasOwnProperty.call(req, 'planContent')) {
     const { planContent } = req.body;
     card.planContent = planContent;
   }
-  if (req.hasOwnProperty('imageLink')) {
+  if (Object.prototype.hasOwnProperty.call(req, 'imageLink')) {
     const { imageLink } = req.body;
     card.imageLink = imageLink;
   }
@@ -99,37 +92,5 @@ router.delete('/', (_, res) => {
     .then(() => res.status(200).json({ success: true }))
     .catch((e) => errorHandler(res, e));
 });
-
-/* 
- //protected: get my info 
-router.get('/me', auth, (req, res) => {
-    const { userId } = req;
-  
-    return User.findById(userId)
-      .select('firstName lastName email _id')
-      .then((user) => {
-        if (!user) return errorHandler(res, 'User does not exist.');
-  
-        return res.status(200).json({ success: true, data: user });
-      })
-      .catch((err) => errorHandler(res, err.message));
-  });
-  
-  // TESTING ENDPOINTS BELOW (DELETE IN PRODUCTION) 
-  // fetch all users in database 
-  router.get('/', (_, res) => {
-    Card.find({})
-      .then((result) => res.status(200).json({ success: true, result }))
-      .catch((e) => errorHandler(res, e));
-  });
-  
-  // delete all users in database 
-  router.delete('/', (_, res) => {
-    User.deleteMany({})
-      .then(() => res.status(200).json({ success: true }))
-      .catch((e) => errorHandler(res, e));
-  });
-
-*/
 
 export default router;
