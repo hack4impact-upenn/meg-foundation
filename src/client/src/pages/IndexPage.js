@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query';
 import api from '../api';
+import ExportPopUp from '../components/ExportPopUp.tsx';
 
 function IndexPage() {
   // Example API request with caching, fetch list of users.
@@ -18,6 +19,9 @@ function IndexPage() {
           <h1 className="title">Welcome to Meg Foundation!</h1>
         </div>
       </header>
+      <div>
+        <ExportPopUp title="Export" />
+      </div>
       {isLoading ? (
         'Loading...'
       ) : error ? (
