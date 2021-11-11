@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
 import api from '../api';
 import Card from '../components/Card.tsx';
+import CardList from '../components/CardList.tsx';
 
 function IndexPage() {
   // Example API request with caching, fetch list of users.
@@ -42,6 +43,8 @@ When I'm back up at the top I wanna hear you say
 He don't run from nothin', dog
 Get your soldiers, tell em that the break is over"
         />
+        {/* Display CardList with dummy card data */}
+        <CardList data={[{ title: 'Card 1' }, { title: 'Card 2' }]} />
       </div>
       {isLoading ? (
         'Loading...'

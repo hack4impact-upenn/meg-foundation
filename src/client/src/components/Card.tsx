@@ -157,7 +157,9 @@ const Card = (props) => {
             }}
           >
             <div>{title}</div>
-            <Button style={{ fontSize: '10px' }}>+ Add to Plan</Button>
+            <Button style={{ fontSize: '10px' }} onClick={handleClick}>
+              + Add to Plan
+            </Button>
             {/* </Titlebar> */}
           </div>
           <div
