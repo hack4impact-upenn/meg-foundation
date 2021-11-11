@@ -46,7 +46,14 @@ const CardsList = (props) => {
 
   const renderCards = () => {
     return renderedArray.map((item, index) => {
-      return <Card key={index} data={item.props} handleClick={handleClick} />;
+      return (
+        <Card
+          key={index}
+          title={item.title}
+          description={item.description}
+          handleClick={handleClick}
+        />
+      );
     });
   };
 

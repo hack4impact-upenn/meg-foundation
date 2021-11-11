@@ -44,7 +44,12 @@ He don't run from nothin', dog
 Get your soldiers, tell em that the break is over"
         />
         {/* Display CardList with dummy card data */}
-        <CardList data={[{ title: 'Card 1' }, { title: 'Card 2' }]} />
+        <CardList
+          data={[
+            { title: 'Card 1', description: 'Test Card 1 Description' },
+            { title: 'Card 2', description: 'Test Card 2 Description' },
+          ]}
+        />
       </div>
       {isLoading ? (
         'Loading...'

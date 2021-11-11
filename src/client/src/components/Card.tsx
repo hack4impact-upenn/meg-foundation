@@ -156,7 +156,7 @@ const Card = (props) => {
               //fontSize: '20px'
             }}
           >
-            <div>{title}</div>
+            <div>{title ? title : 'NEED TITLE'}</div>
             <Button style={{ fontSize: '10px' }} onClick={handleClick}>
               + Add to Plan
             </Button>
@@ -182,7 +182,7 @@ const Card = (props) => {
               fontSize: '12px',
             }}
           >
-            {description}
+            {description ? description : 'no description'}
           </div>
           <div
             onClick={() => setExpanded(!expanded)}
