@@ -9,6 +9,7 @@ import minus_icon from '../images/minus.png';
 import placeholder_image from '../images/placeholder.png';
 import { boltzmannDependencies } from 'mathjs';
 import { placeholder } from '@babel/types';
+import '../fonts/Brandon Text/BrandonText-Regular.otf';
 
 const screenWidth = window.screen.width;
 var displayWidth = screenWidth < 1280 ? '320px' : '640px';
@@ -37,10 +38,10 @@ const Container = styled.div`
 `;
 
 const Button = styled.div`
-  font-family: Brandon Text;
+  font-family: BrandonTextRegular;
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: bold;
   line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
