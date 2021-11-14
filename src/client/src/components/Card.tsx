@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 // import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
+import more_icon from '../images/show_more.png';
+import less_icon from '../images/show_less.png';
+import { boltzmannDependencies } from 'mathjs';
 
 const screenWidth = window.screen.width;
 var displayWidth = screenWidth < 1280 ? '90vw' : '28vw';
@@ -9,13 +12,10 @@ displayWidth = screenWidth > 1680 ? '24vw' : displayWidth;
 
 const Container = styled.div`
   border-radius: 10px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #000000;
   height: auto;
   overflow: hidden;
   width: ${displayWidth};
-  padding-top: 10px;
+  padding: 20px;
   background-color: ${colors.PURPLE};
   justify-content: center;
   margin: auto;
@@ -34,15 +34,21 @@ const Container = styled.div`
 `;
 
 const Button = styled.div`
-  font-size: '10px';
+  font-family: Brandon Text;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
   border-radius: 30px;
   border-style: solid;
   border-width: 1px;
-  border-color: #1aabb8;
-  color: #1aabb8;
+  border-color: #e0ecbf;
+  color: #82b500;
   overflow: hidden;
   padding: 10px;
-  background-color: #ffffff;
+  background-color: #e0ecbf;
   justify-content: center;
   cursor: pointer;
   align-items: center;
@@ -151,18 +157,18 @@ const Card = (props) => {
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: 'center',
-              marginLeft: '10px',
-              marginRight: '10px',
-              //fontSize: '20px'
+              fontSize: '24px',
+              color: '#585858',
+              fontWeight: 'bold',
             }}
           >
             <div>{title ? title : 'NEED TITLE'}</div>
-            <Button style={{ fontSize: '10px' }} onClick={handleClick}>
+            <Button style={{ fontSize: '14px' }} onClick={handleClick}>
               + Add to Plan
             </Button>
             {/* </Titlebar> */}
           </div>
-          <div
+          {/* <div
             style={{
               height: '2px',
               width: '75px',
@@ -170,16 +176,13 @@ const Card = (props) => {
               marginLeft: '10px',
               marginRight: '10px',
             }}
-          />
+          /> */}
           <div
             style={{
               height: expanded ? 'auto' : '100px',
               overflow: 'hidden',
-              marginLeft: '10px',
-              marginRight: '10px',
-              marginTop: '10px',
-              marginBottom: '15px',
-              fontSize: '12px',
+              fontSize: '18px',
+              color: '#585858',
             }}
           >
             {description ? description : 'no description'}
@@ -187,15 +190,26 @@ const Card = (props) => {
           <div
             onClick={() => setExpanded(!expanded)}
             style={{
-              backgroundColor: '#E5E5E5',
               borderRadius: '0px 0px 10px 10px',
               display: 'flex',
               justifyContent: 'space-around',
-              fontSize: '12px',
+              fontSize: '18px',
+              fontWeight: 'bold',
               alignItems: 'center',
+              color: '#ACACAC',
             }}
           >
-            Learn More
+            {expanded ? (
+              <div style={{ alignItems: 'center', justifyContent: 'center' }}>
+                <img src={less_icon} />
+                <span> Show Less</span>{' '}
+              </div>
+            ) : (
+              <div>
+                <img src={more_icon} />
+                <span> Show More</span>{' '}
+              </div>
+            )}
           </div>
           {/* <OrgDescription>{props.org.shortDescription}</OrgDescription> */}
         </div>

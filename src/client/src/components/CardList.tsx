@@ -16,7 +16,7 @@ const Container = styled.div`
   align-items: center;
   margin: 0 auto;
   padding-left: 20px;
-  position: absolute;
+  position: relative;
   @media screen and (max-width: 768px) {
     max-width: 90vw;
     padding: 0px 0px;
