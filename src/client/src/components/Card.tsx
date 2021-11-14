@@ -5,6 +5,7 @@ import colors from '../common/Colors';
 import more_icon from '../images/show_more.png';
 import less_icon from '../images/show_less.png';
 import { boltzmannDependencies } from 'mathjs';
+import '../fonts/Brandon Text/BrandonText-Regular.otf';
 
 const screenWidth = window.screen.width;
 var displayWidth = screenWidth < 1280 ? '90vw' : '28vw';
@@ -34,10 +35,10 @@ const Container = styled.div`
 `;
 
 const Button = styled.div`
-  font-family: Brandon Text;
+  font-family: BrandonTextRegular;
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: bold;
   line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
@@ -200,12 +201,12 @@ const Card = (props) => {
             {expanded ? (
               <div style={{ alignItems: 'center', justifyContent: 'center' }}>
                 <img src={less_icon} />
-                <span> Show Less</span>{' '}
+                <span> Show Less</span>
               </div>
             ) : (
               <div>
                 <img src={more_icon} />
-                <span> Show More</span>{' '}
+                <span> Show More</span>
               </div>
             )}
           </div>
