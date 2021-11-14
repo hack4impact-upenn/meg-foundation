@@ -48,12 +48,16 @@ Get your soldiers, tell em that the break is over"
           data={[
             {
               title: 'Card 1',
-              description:
+              descriptionShort:
+                'This is a short description. Please look. hahahaha',
+              descriptionLong:
                 'Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description  Test Card 1 Description Test Card 1 Description Test Card 1 Description  Test Card 1 Description Test Card 1 Description Test Card 1 Description  Test Card 1 Description Test Card 1 Description Test Card 1 Description ',
             },
             {
               title: 'Card 2',
-              description:
+              descriptionShort:
+                'This is a short description. Please look. hahahaha',
+              descriptionLong:
                 'Test Card 2 Description Test Card 2 Description Test Card 2 Description Test Card 2 Description Test Card 2 DescriptionTest Card 2 Description',
             },
           ]}

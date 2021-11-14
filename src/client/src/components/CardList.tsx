@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Card from './Card.tsx';
 
 const screenWidth = window.screen.width;
-var displayWidth = screenWidth < 1280 ? '100vw' : '30vw';
-displayWidth = screenWidth > 1680 ? '26vw' : displayWidth;
+var displayWidth = screenWidth < 1280 ? '360px' : '680px';
+displayWidth = screenWidth > 1680 ? '680px' : displayWidth;
 
 const Container = styled.div`
   border-radius: 10px;
@@ -50,7 +50,8 @@ const CardsList = (props) => {
         <Card
           key={index}
           title={item.title}
-          description={item.description}
+          descriptionShort={item.descriptionShort}
+          descriptionLong={item.descriptionLong}
           handleClick={handleClick}
         />
       );

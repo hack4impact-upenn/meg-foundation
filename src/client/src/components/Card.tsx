@@ -4,11 +4,15 @@ import styled from 'styled-components';
 import colors from '../common/Colors';
 import more_icon from '../images/show_more.png';
 import less_icon from '../images/show_less.png';
+import plus_icon from '../images/plus.png';
+import minus_icon from '../images/minus.png';
+import placeholder_image from '../images/placeholder.png';
 import { boltzmannDependencies } from 'mathjs';
+import { placeholder } from '@babel/types';
 
 const screenWidth = window.screen.width;
-var displayWidth = screenWidth < 1280 ? '90vw' : '28vw';
-displayWidth = screenWidth > 1680 ? '24vw' : displayWidth;
+var displayWidth = screenWidth < 1280 ? '320px' : '640px';
+displayWidth = screenWidth > 1680 ? '640px' : displayWidth;
 
 const Container = styled.div`
   border-radius: 10px;
@@ -16,7 +20,6 @@ const Container = styled.div`
   overflow: hidden;
   width: ${displayWidth};
   padding: 20px;
-  background-color: ${colors.PURPLE};
   justify-content: center;
   margin: auto;
   cursor: pointer;
@@ -80,65 +83,8 @@ const InfoDiv = styled.div`
   }
 `;
 
-// const Avatar = styled.img`
-//   display: inline;
-//   width: 50px;
-//   height: 50px;
-//   background: white;
-//   border-radius: 50%;
-//   border: 2px solid white;
-//   @media screen and (max-width: 768px) {
-//     width: 45px;
-//     height: 45px;
-//   }
-// `;
-
-// const OrgName = styled.span`
-//   display: block;
-//   font-size: 20px;
-//   font-weight: 500;
-//   color: ${colors.YELLOW};
-//   @media screen and (max-width: 768px) {
-//     font-size: 18px;
-//     font-weight: 50;
-//   }
-// `;
-
-// const LearnMore = styled.span`
-//   display: block;
-//   font-size: 20px;
-//   font-weight: 500;
-//   height: 40px;
-//   display: flex;
-//   align-items: center;
-//   color: ${colors.YELLOW};
-//   @media screen and (max-width: 768px) {
-//     font-size: 16px;
-//     font-weight: 50;
-//   }
-// `;
-
-// const OrgCity = styled.span`
-//   font-size: 14px;
-//   font-weight: 500;
-//   color: white;
-//   @media screen and (max-width: 768px) {
-//     font-size: 13px;
-//     font-weight: 40;
-//   }
-// `;
-// const OrgDescription = styled.p`
-//   text-align: start;
-//   color: white;
-//   font-size: 12px;
-//   margin-bottom: 12px;
-//   @media screen and (max-width: 768px) {
-//     font-size: 11px;
-//   }
-// `;
-
 const Card = (props) => {
-  const { title, description, handleClick } = props;
+  const { title, descriptionShort, descriptionLong, handleClick } = props;
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -163,8 +109,20 @@ const Card = (props) => {
             }}
           >
             <div>{title ? title : 'NEED TITLE'}</div>
-            <Button style={{ fontSize: '14px' }} onClick={handleClick}>
-              + Add to Plan
+            <Button
+              style={{
+                fontSize: '14px',
+                display: 'flex',
+                flexDirection: 'row',
+                height: '32px',
+              }}
+              onClick={handleClick}
+            >
+              <img
+                src={plus_icon}
+                style={{ width: '16px', height: '16px', marginRight: '6px' }}
+              />
+              Add to Plan
             </Button>
             {/* </Titlebar> */}
           </div>
@@ -179,14 +137,32 @@ const Card = (props) => {
           /> */}
           <div
             style={{
-              height: expanded ? 'auto' : '100px',
+              // height: expanded ? 'auto' : '100px',
               overflow: 'hidden',
               fontSize: '18px',
               color: '#585858',
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
             }}
           >
-            {description ? description : 'no description'}
+            <img
+              src={placeholder_image}
+              style={{ width: '230px', height: '230px', marginRight: '20px' }}
+            />
+            {descriptionShort ? descriptionShort : 'no description'}
           </div>
+          {expanded && (
+            <div
+              style={{
+                fontSize: '18px',
+                color: '#585858',
+                marginTop: '20px',
+              }}
+            >
+              {descriptionLong}
+            </div>
+          )}
           <div
             onClick={() => setExpanded(!expanded)}
             style={{
@@ -200,20 +176,24 @@ const Card = (props) => {
             }}
           >
             {expanded ? (
-              <div style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <div
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  alignContent: 'center',
+                }}
+              >
                 <img src={less_icon} />
-                <span> Show Less</span>{' '}
+                <span> Show Less</span>
               </div>
             ) : (
-              <div>
+              <div style={{ alignItems: 'center', justifyContent: 'center' }}>
                 <img src={more_icon} />
-                <span> Show More</span>{' '}
+                <span> Show More</span>
               </div>
             )}
           </div>
-          {/* <OrgDescription>{props.org.shortDescription}</OrgDescription> */}
         </div>
-        {/* <SocialsList org={props.org} /> */}
         <div className="is-pulled-left">
           <div style={{ display: 'relative' }}>
             {/* <LearnMore>Learn More</LearnMore> */}
