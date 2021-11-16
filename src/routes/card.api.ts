@@ -39,21 +39,19 @@ router.get('/:title', (req, res) => {
 /* update an individual card */
 router.put('/:title', async (req, res) => {
   const { title } = req.params;
-  const card = await Card.findOne({ title });
   interface updatesObject {
     [key: string]: string;
   }
   const updates: updatesObject = {};
 
-  if (!card) return errorHandler(res, 'Card does not exist.');
-
   if (Object.prototype.hasOwnProperty.call(req.body, 'title')) {
     const { newTitle } = req.body;
     updates.title = newTitle;
   }
+
   if (Object.prototype.hasOwnProperty.call(req.body, 'cardContent')) {
     const { cardContent } = req.body;
-    card.cardContent = cardContent;
+    updates.cardContent = cardContent;
   }
   if (Object.prototype.hasOwnProperty.call(req.body, 'planContent')) {
     const { planContent } = req.body;
