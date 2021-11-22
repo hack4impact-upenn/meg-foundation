@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 // import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
+import App from '../components/App.js';
 
 const screenWidth = window.screen.width;
 var displayWidth = screenWidth < 1280 ? '90vw' : '28vw';
@@ -135,6 +136,7 @@ const Card = (props) => {
 
   return (
     <div
+      id={'card'}
       className={screenWidth < 1280 ? '' : `is-pulled-left`}
       style={{ marginBottom: '20px', marginLeft: '2px', marginRight: '10px' }}
     >
@@ -155,6 +157,7 @@ const Card = (props) => {
           >
             <div>{title}</div>
             <Button>+ Add to Plan</Button>
+            <App></App>
             {/* </Titlebar> */}
           </div>
           <div
