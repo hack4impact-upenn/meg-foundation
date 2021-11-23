@@ -9,7 +9,9 @@ import minus_icon from '../images/minus.png';
 import placeholder_image from '../images/placeholder.png';
 import { boltzmannDependencies } from 'mathjs';
 import { placeholder } from '@babel/types';
+import '../fonts/Brandon Text/BrandonText-Black.otf';
 import '../fonts/Brandon Text/BrandonText-Regular.otf';
+import '../fonts/Brandon Text/BrandonText-Medium.otf';
 
 const screenWidth = window.screen.width;
 var displayWidth = screenWidth < 1280 ? '320px' : '640px';
@@ -25,9 +27,9 @@ const Container = styled.div`
   margin: auto;
   cursor: pointer;
   align-items: center;
-  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.1);
   &:hover {
-    box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.2);
     transition-duration: 0.5s;
   }
   @media screen and (max-width: 768px) {
@@ -38,10 +40,9 @@ const Container = styled.div`
 `;
 
 const Button = styled.div`
-  font-family: BrandonTextRegular;
+  font-family: BrandonTextBlack;
   font-size: 14px;
   font-style: normal;
-  font-weight: bold;
   line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
@@ -106,7 +107,7 @@ const Card = (props) => {
               alignItems: 'center',
               fontSize: '24px',
               color: '#585858',
-              fontWeight: 'bold',
+              marginBottom: '20px',
             }}
           >
             <div>{title ? title : 'NEED TITLE'}</div>
@@ -145,6 +146,7 @@ const Card = (props) => {
               display: 'flex',
               flexDirection: 'row',
               alignItems: 'center',
+              fontFamily: 'BrandonTextMedium',
             }}
           >
             <img
@@ -159,6 +161,7 @@ const Card = (props) => {
                 fontSize: '18px',
                 color: '#585858',
                 marginTop: '20px',
+                fontFamily: 'BrandonTextMedium',
               }}
             >
               {descriptionLong}
@@ -171,7 +174,7 @@ const Card = (props) => {
               display: 'flex',
               justifyContent: 'space-around',
               fontSize: '18px',
-              fontWeight: 'bold',
+
               alignItems: 'center',
               color: '#ACACAC',
             }}
