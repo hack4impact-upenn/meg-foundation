@@ -48,6 +48,7 @@ Get your soldiers, tell em that the break is over"
           data={[
             {
               title: 'Card 1',
+              status: 'added',
               descriptionShort:
                 'This is a short description. Please look. hahahaha',
               descriptionLong:
@@ -55,6 +56,7 @@ Get your soldiers, tell em that the break is over"
             },
             {
               title: 'Card 2',
+              status: 'not added',
               descriptionShort:
                 'This is a short description. Please look. hahahaha',
               descriptionLong:

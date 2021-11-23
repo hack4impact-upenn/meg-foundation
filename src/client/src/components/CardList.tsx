@@ -52,6 +52,7 @@ const CardsList = (props) => {
           title={item.title}
           descriptionShort={item.descriptionShort}
           descriptionLong={item.descriptionLong}
+          status={item.status}
           handleClick={handleClick}
         />
       );

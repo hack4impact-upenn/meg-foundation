@@ -85,7 +85,13 @@ const InfoDiv = styled.div`
 `;
 
 const Card = (props) => {
-  const { title, descriptionShort, descriptionLong, handleClick } = props;
+  const {
+    title,
+    descriptionShort,
+    descriptionLong,
+    status,
+    handleClick,
+  } = props;
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -110,21 +116,42 @@ const Card = (props) => {
             }}
           >
             <div>{title ? title : 'NEED TITLE'}</div>
-            <Button
-              style={{
-                fontSize: '14px',
-                display: 'flex',
-                flexDirection: 'row',
-                height: '32px',
-              }}
-              onClick={handleClick}
-            >
-              <img
-                src={plus_icon}
-                style={{ width: '16px', height: '16px', marginRight: '6px' }}
-              />
-              Add to Plan
-            </Button>
+            {status === 'added' ? (
+              <Button
+                style={{
+                  fontSize: '14px',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  height: '32px',
+                  backgroundColor: '#FFD1CE',
+                  color: '#FF453A',
+                }}
+                onClick={handleClick}
+              >
+                <img
+                  src={minus_icon}
+                  style={{ width: '16px', height: '16px', marginRight: '6px' }}
+                />
+                Remove
+              </Button>
+            ) : (
+              <Button
+                style={{
+                  fontSize: '14px',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  height: '32px',
+                }}
+                onClick={handleClick}
+              >
+                <img
+                  src={plus_icon}
+                  style={{ width: '16px', height: '16px', marginRight: '6px' }}
+                />
+                Add to Plan
+              </Button>
+            )}
+
             {/* </Titlebar> */}
           </div>
           {/* <div
