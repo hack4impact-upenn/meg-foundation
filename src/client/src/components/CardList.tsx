@@ -26,38 +26,58 @@ const Container = styled.div`
   }
 `;
 
-const CardsList = (props) => {
-  const { data } = props;
+const CardList = (props) => {
+  const { data, handleClick } = props;
 
   const [renderedArray, setArray] = useState(data);
 
   //render list of Cards
 
   //handleClick method to pass to each card that will change the state of the cardlist by changing which cards are selected
-  const handleClick = (id) => {
-    const newArray = renderedArray.map((card) => {
-      if (card.id === id) {
-        card.selected = !card.selected;
-      }
-      return card;
-    });
-    setArray(newArray);
-  };
+  // const handleClick = (id) => {
+  //   const newArray = renderedArray.map((card) => {
+  //     if (card.id === id) {
+  //       card.selected = !card.selected;
+  //     }
+  //     return card;
+  //   });
+  //   setArray(newArray);
+  // };
 
-  const renderCards = () => {
-    return renderedArray.map((item, index) => {
-      return (
-        <Card
-          key={index}
-          title={item.title}
-          descriptionShort={item.descriptionShort}
-          descriptionLong={item.descriptionLong}
-          status={item.status}
-          handleClick={handleClick}
-        />
-      );
-    });
-  };
+  // const renderCards = () => {
+  //   if (props.side === 'left') {
+  //     return renderedArray.map((item, index) => {
+  //       if (!item.added) {
+  //         return (
+  //           <Card
+  //             key={index}
+  //             title={item.title}
+  //             descriptionShort={item.descriptionShort}
+  //             descriptionLong={item.descriptionLong}
+  //             added={item.added}
+  //             handleClick={props.handleClick(item)}
+  //           />
+  //         );
+  //       }
+  //     });
+  //   } else {
+  //     return renderedArray.map((item, index) => {
+  //       if (item.added) {
+  //         return (
+  //           <Card
+  //             key={index}
+  //             title={item.title}
+  //             descriptionShort={item.descriptionShort}
+  //             descriptionLong={item.descriptionLong}
+  //             added={item.added}
+  //             handleClick={props.handleClick(item)}
+  //           />
+  //         );
+  //       }
+  //     });
+  //   }
+
+  // };
 
   return (
     <div
@@ -65,9 +85,20 @@ const CardsList = (props) => {
         screenWidth < 1280 ? { display: 'flex', justifyContent: 'center' } : {}
       }
     >
-      <Container>{renderCards()}</Container>
+      <Container>
+        {data.map((item, id) => (
+          <Card
+            key={id}
+            title={item.title}
+            descriptionShort={item.descriptionShort}
+            descriptionLong={item.descriptionLong}
+            added={item.added}
+            handleClick={() => handleClick(item)}
+          />
+        ))}
+      </Container>
     </div>
   );
 };
 
-export default CardsList;
+export default CardList;

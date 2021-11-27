@@ -12,8 +12,8 @@ import { placeholder } from '@babel/types';
 import '../fonts/Brandon Text/BrandonText-Regular.otf';
 
 const screenWidth = window.screen.width;
-var displayWidth = screenWidth < 1280 ? '320px' : '640px';
-displayWidth = screenWidth > 1680 ? '640px' : displayWidth;
+var displayWidth = screenWidth < 1280 ? '320px' : '560px';
+displayWidth = screenWidth > 1680 ? '560px' : displayWidth;
 
 const Container = styled.div`
   border-radius: 10px;
@@ -89,15 +89,22 @@ const Card = (props) => {
     title,
     descriptionShort,
     descriptionLong,
-    status,
+    added,
     handleClick,
   } = props;
+  console.log(props);
   const [expanded, setExpanded] = useState(false);
 
   return (
     <div
       className={screenWidth < 1280 ? '' : `is-pulled-left`}
-      style={{ marginBottom: '20px', marginLeft: '2px', marginRight: '10px' }}
+      style={{
+        marginBottom: '20px',
+        marginLeft: '2px',
+        marginRight: '10px',
+        backgroundColor: '#FFFFFF',
+        borderRadius: '10px',
+      }}
     >
       <Container
       // onClick={() => handleClick()}
@@ -116,7 +123,7 @@ const Card = (props) => {
             }}
           >
             <div>{title ? title : 'NEED TITLE'}</div>
-            {status === 'added' ? (
+            {added ? (
               <Button
                 style={{
                   fontSize: '14px',
