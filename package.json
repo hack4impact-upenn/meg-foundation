@@ -95,6 +95,7 @@
     "socket.io": "^2.3.0",
     "swiper": "^6.3.5",
     "ts-node": "^8.10.2",
+    "twilio": "^3.8.1",
     "typescript": "^3.9.5",
     "victory": "^35.3.5"
   }
