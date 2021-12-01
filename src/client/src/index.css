@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'BrandonTextRegular';
+  src: local('BrandonTextRegular'),
+    url('./fonts/Brandon Text/BrandonText-Regular.otf') format('opentype');
+  font-weight: normal;
+}
+
+body {
+  font-family: BrandonTextRegular;
+}
