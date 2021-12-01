@@ -56,27 +56,28 @@ function IndexPage() {
       <div>
         <ExportPopUp title="Export" />
       </div>
-    <div>
-      <DualList cardData={testArray}></DualList>
-      {isLoading ? (
-        'Loading...'
-      ) : error ? (
-        <p style={{ color: 'red' }}>An error occurred! {error}</p>
-      ) : (
-        <div className="is-flex is-flex-wrap-wrap">
-          {data.result.map((user) => (
-            <article key={user.id} className="box m-2">
-              <p className="has-text-weight-bold">
-                {user.firstName} {user.lastName}
-              </p>
-              <p>{user.email}</p>
-            </article>
-          ))}
-        </div>
-      )}
-      <footer className="section">
-        To be filled in with the actual app, soon! :)
-      </footer>
+      <div>
+        <DualList cardData={testArray}></DualList>
+        {isLoading ? (
+          'Loading...'
+        ) : error ? (
+          <p style={{ color: 'red' }}>An error occurred! {error}</p>
+        ) : (
+          <div className="is-flex is-flex-wrap-wrap">
+            {data.result.map((user) => (
+              <article key={user.id} className="box m-2">
+                <p className="has-text-weight-bold">
+                  {user.firstName} {user.lastName}
+                </p>
+                <p>{user.email}</p>
+              </article>
+            ))}
+          </div>
+        )}
+        <footer className="section">
+          To be filled in with the actual app, soon! :)
+        </footer>
+      </div>
     </div>
   );
 }
