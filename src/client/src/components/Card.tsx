@@ -222,7 +222,13 @@ const Card = (props) => {
                 <span> Show Less</span>
               </div>
             ) : (
-              <div style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <div
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: '15px',
+                }}
+              >
                 <img src={more_icon} />
                 <span> Show More</span>
               </div>
