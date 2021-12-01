@@ -94,7 +94,12 @@ function Navbar() {
   return (
     <nav
       className="navbar"
-      style={{ background: `${Colors.white}`, height: '85px', width: '100%' }}
+      style={{
+        background: `${Colors.white}`,
+        height: '50px',
+        width: '100%',
+        boxShadow: '1px 1px 10px 5px rgba(0, 0, 0, 0.1)',
+      }}
     >
       <div className="navbar-brand">
         <a
@@ -108,7 +113,7 @@ function Navbar() {
               width: '46px',
               height: '50px',
               marginLeft: '40px',
-              marginTop: '20px',
+              marginTop: '0px',
             }}
           />
         </a>
