@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query';
 import api from '../api';
+import ExportPopUp from '../components/ExportPopUp.tsx';
 import Card from '../components/Card.tsx';
 import DualList from '../components/DualList.tsx';
 import CardList from '../components/CardList.tsx';
@@ -46,6 +47,15 @@ function IndexPage() {
   //if the card is not selected, it should be on the left and not on the right
 
   return (
+    <div className="container center">
+      <header className="hero">
+        <div className="hero-body">
+          <h1 className="title">Welcome to Meg Foundation!</h1>
+        </div>
+      </header>
+      <div>
+        <ExportPopUp title="Export" />
+      </div>
     <div>
       <DualList cardData={testArray}></DualList>
       {isLoading ? (
