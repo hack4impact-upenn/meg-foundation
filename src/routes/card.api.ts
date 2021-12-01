@@ -39,29 +39,30 @@ router.get('/:title', (req, res) => {
 /* update an individual card */
 router.put('/:title', async (req, res) => {
   const { title } = req.params;
-  const card = await Card.findOne({ title });
-
-  if (!card) return errorHandler(res, 'Card does not exist.');
-
-  if (Object.prototype.hasOwnProperty.call(req, 'title')) {
-    const newTitle = req.body.title;
-    card.title = newTitle;
+  interface updatesObject {
+    [key: string]: string;
   }
-  if (Object.prototype.hasOwnProperty.call(req, 'cardContent')) {
+  const updates: updatesObject = {};
+
+  if (Object.prototype.hasOwnProperty.call(req.body, 'title')) {
+    const { newTitle } = req.body;
+    updates.title = newTitle;
+  }
+
+  if (Object.prototype.hasOwnProperty.call(req.body, 'cardContent')) {
     const { cardContent } = req.body;
-    card.cardContent = cardContent;
+    updates.cardContent = cardContent;
   }
-  if (Object.prototype.hasOwnProperty.call(req, 'planContent')) {
+  if (Object.prototype.hasOwnProperty.call(req.body, 'planContent')) {
     const { planContent } = req.body;
-    card.planContent = planContent;
+    updates.planContent = planContent;
   }
-  if (Object.prototype.hasOwnProperty.call(req, 'imageLink')) {
+  if (Object.prototype.hasOwnProperty.call(req.body, 'imageLink')) {
     const { imageLink } = req.body;
-    card.imageLink = imageLink;
+    updates.imageLink = imageLink;
   }
 
-  return card
-    .save()
+  return Card.findOneAndUpdate({ title }, updates)
     .then(() => res.status(200).json({ success: true }))
     .catch((e) => errorHandler(res, e.message));
 });
