@@ -6,14 +6,14 @@ Plan Builder for Meg Foundation
 
 **Team Members:**
 
-- David Feng 
-- Eric Chen 
-- Subin Lee 
-- Ian Pedroza 
-- Rose Wang 
-- Samantha Su 
-- Santiago Garcia Santos 
-- Sarah Hilado 
+- David Feng
+- Eric Chen
+- Subin Lee
+- Ian Pedroza
+- Rose Wang
+- Samantha Su
+- Santiago Garcia Santos
+- Sarah Hilado
 - Taha Boty
 
 ## Setting Up

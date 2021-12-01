@@ -2,22 +2,26 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 // import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
-import App from '../components/App.js';
+
+import more_icon from '../images/show_more.png';
+import less_icon from '../images/show_less.png';
+import plus_icon from '../images/plus.png';
+import minus_icon from '../images/minus.png';
+import placeholder_image from '../images/placeholder.png';
+import { boltzmannDependencies } from 'mathjs';
+import { placeholder } from '@babel/types';
+import '../fonts/Brandon Text/BrandonText-Regular.otf';
 
 const screenWidth = window.screen.width;
-var displayWidth = screenWidth < 1280 ? '90vw' : '28vw';
-displayWidth = screenWidth > 1680 ? '24vw' : displayWidth;
+var displayWidth = screenWidth < 1280 ? '320px' : '560px';
+displayWidth = screenWidth > 1680 ? '560px' : displayWidth;
 
 const Container = styled.div`
   border-radius: 10px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #000000;
   height: auto;
   overflow: hidden;
   width: ${displayWidth};
-  padding-top: 10px;
-  background-color: ${colors.PURPLE};
+  padding: 20px;
   justify-content: center;
   margin: auto;
   cursor: pointer;
@@ -35,13 +39,21 @@ const Container = styled.div`
 `;
 
 const Button = styled.div`
+  font-family: BrandonTextRegular;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
   border-radius: 30px;
   border-style: solid;
   border-width: 1px;
-  border-color: #1aabb8;
+  border-color: #e0ecbf;
+  color: #82b500;
   overflow: hidden;
   padding: 10px;
-  background-color: #ffffff;
+  background-color: #e0ecbf;
   justify-content: center;
   cursor: pointer;
   align-items: center;
@@ -73,72 +85,28 @@ const InfoDiv = styled.div`
   }
 `;
 
-// const Avatar = styled.img`
-//   display: inline;
-//   width: 50px;
-//   height: 50px;
-//   background: white;
-//   border-radius: 50%;
-//   border: 2px solid white;
-//   @media screen and (max-width: 768px) {
-//     width: 45px;
-//     height: 45px;
-//   }
-// `;
-
-// const OrgName = styled.span`
-//   display: block;
-//   font-size: 20px;
-//   font-weight: 500;
-//   color: ${colors.YELLOW};
-//   @media screen and (max-width: 768px) {
-//     font-size: 18px;
-//     font-weight: 50;
-//   }
-// `;
-
-// const LearnMore = styled.span`
-//   display: block;
-//   font-size: 20px;
-//   font-weight: 500;
-//   height: 40px;
-//   display: flex;
-//   align-items: center;
-//   color: ${colors.YELLOW};
-//   @media screen and (max-width: 768px) {
-//     font-size: 16px;
-//     font-weight: 50;
-//   }
-// `;
-
-// const OrgCity = styled.span`
-//   font-size: 14px;
-//   font-weight: 500;
-//   color: white;
-//   @media screen and (max-width: 768px) {
-//     font-size: 13px;
-//     font-weight: 40;
-//   }
-// `;
-// const OrgDescription = styled.p`
-//   text-align: start;
-//   color: white;
-//   font-size: 12px;
-//   margin-bottom: 12px;
-//   @media screen and (max-width: 768px) {
-//     font-size: 11px;
-//   }
-// `;
-
 const Card = (props) => {
-  const { title, description, handleClick } = props;
+  const {
+    title,
+    descriptionShort,
+    descriptionLong,
+    added,
+    handleClick,
+  } = props;
+  console.log(props);
   const [expanded, setExpanded] = useState(false);
 
   return (
     <div
       id={'card'}
       className={screenWidth < 1280 ? '' : `is-pulled-left`}
-      style={{ marginBottom: '20px', marginLeft: '2px', marginRight: '10px' }}
+      style={{
+        marginBottom: '20px',
+        marginLeft: '2px',
+        marginRight: '10px',
+        backgroundColor: '#FFFFFF',
+        borderRadius: '10px',
+      }}
     >
       <Container
       // onClick={() => handleClick()}
@@ -151,16 +119,54 @@ const Card = (props) => {
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: 'center',
-              marginLeft: '10px',
-              marginRight: '10px',
+              fontSize: '24px',
+              color: '#585858',
+              fontWeight: 'bold',
             }}
           >
             <div>{title}</div>
             <Button>+ Add to Plan</Button>
             <App></App>
+            <div>{title ? title : 'NEED TITLE'}</div>
+            {added ? (
+              <Button
+                style={{
+                  fontSize: '14px',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  height: '32px',
+                  backgroundColor: '#FFD1CE',
+                  color: '#FF453A',
+                }}
+                onClick={handleClick}
+              >
+                <img
+                  src={minus_icon}
+                  style={{ width: '16px', height: '16px', marginRight: '6px' }}
+                />
+                Remove
+              </Button>
+            ) : (
+              <Button
+                style={{
+                  fontSize: '14px',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  height: '32px',
+                }}
+                onClick={handleClick}
+              >
+                <img
+                  src={plus_icon}
+                  style={{ width: '16px', height: '16px', marginRight: '6px' }}
+                />
+                Add to Plan
+              </Button>
+            )}
+
             {/* </Titlebar> */}
           </div>
-          <div
+          {/* <div
             style={{
               height: '2px',
               width: '75px',
@@ -168,34 +174,72 @@ const Card = (props) => {
               marginLeft: '10px',
               marginRight: '10px',
             }}
-          />
+          /> */}
           <div
             style={{
-              height: expanded ? 'auto' : '100px',
+              // height: expanded ? 'auto' : '100px',
               overflow: 'hidden',
-              marginLeft: '10px',
-              marginRight: '10px',
-              marginTop: '10px',
-              marginBottom: '15px',
-            }}
-          >
-            {description}
-          </div>
-          <div
-            onClick={() => setExpanded(!expanded)}
-            style={{
-              backgroundColor: '#E5E5E5',
-              borderRadius: '0px 0px 10px 10px',
+              fontSize: '18px',
+              color: '#585858',
               display: 'flex',
-              justifyContent: 'space-around',
+              flexDirection: 'row',
               alignItems: 'center',
             }}
           >
-            Learn More
+            <img
+              src={placeholder_image}
+              style={{ width: '230px', height: '230px', marginRight: '20px' }}
+            />
+            {descriptionShort ? descriptionShort : 'no description'}
           </div>
-          {/* <OrgDescription>{props.org.shortDescription}</OrgDescription> */}
+          {expanded && (
+            <div
+              style={{
+                fontSize: '18px',
+                color: '#585858',
+                marginTop: '20px',
+              }}
+            >
+              {descriptionLong}
+            </div>
+          )}
+          <div
+            onClick={() => setExpanded(!expanded)}
+            style={{
+              borderRadius: '0px 0px 10px 10px',
+              display: 'flex',
+              justifyContent: 'space-around',
+              fontSize: '18px',
+              fontWeight: 'bold',
+              alignItems: 'center',
+              color: '#ACACAC',
+            }}
+          >
+            {expanded ? (
+              <div
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  alignContent: 'center',
+                }}
+              >
+                <img src={less_icon} />
+                <span> Show Less</span>
+              </div>
+            ) : (
+              <div
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: '15px',
+                }}
+              >
+                <img src={more_icon} />
+                <span> Show More</span>
+              </div>
+            )}
+          </div>
         </div>
-        {/* <SocialsList org={props.org} /> */}
         <div className="is-pulled-left">
           <div style={{ display: 'relative' }}>
             {/* <LearnMore>Learn More</LearnMore> */}
