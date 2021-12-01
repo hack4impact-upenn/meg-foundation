@@ -8,7 +8,7 @@ displayWidth = screenWidth > 1680 ? '680px' : displayWidth;
 
 const Container = styled.div`
   border-radius: 10px;
-  max-height: calc(100vh - 3.25rem);
+  max-height: calc(100vh - 6.75rem);
   overflow-y: scroll;
   width: ${displayWidth};
   padding: 5px 10px;

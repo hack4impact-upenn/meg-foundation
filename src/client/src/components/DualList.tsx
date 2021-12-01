@@ -35,7 +35,6 @@ const DualList = (props) => {
             display: 'flex',
             flex: 1,
             backgroundColor: '#F3F3F3',
-            minHeight: 'calc(100vh - 3.25rem)',
           }}
         >
           <CardList
@@ -50,7 +49,6 @@ const DualList = (props) => {
             display: 'flex',
             flex: 1,
             backgroundColor: '#C6EAED',
-            minHeight: 'calc(100vh - 3.25rem)',
           }}
         >
           <div>
