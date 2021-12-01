@@ -8,7 +8,7 @@ displayWidth = screenWidth > 1680 ? '680px' : displayWidth;
 
 const Container = styled.div`
   border-radius: 10px;
-  max-height: 63vh;
+  max-height: calc(100vh - 3.25rem);
   overflow-y: scroll;
   width: ${displayWidth};
   padding: 5px 10px;
@@ -27,7 +27,7 @@ const Container = styled.div`
 `;
 
 const CardList = (props) => {
-  const { data, handleClick } = props;
+  const { data, handleClick, title } = props;
 
   const [renderedArray, setArray] = useState(data);
 
@@ -85,6 +85,13 @@ const CardList = (props) => {
         screenWidth < 1280 ? { display: 'flex', justifyContent: 'center' } : {}
       }
     >
+      <header className="hero">
+        <div className="hero-body" style={{ padding: '1rem 1.5rem' }}>
+          <h1 className="title" style={{ fontSize: '1.5rem' }}>
+            {title}
+          </h1>
+        </div>
+      </header>
       <Container>
         {data.map((item, id) => (
           <Card

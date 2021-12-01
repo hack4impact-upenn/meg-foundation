@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CardList from './CardList.tsx';
+import ExportPopUp from './ExportPopUp.tsx';
 
 const DualList = (props) => {
   const [data, setData] = useState(props.cardData);
@@ -29,18 +30,37 @@ const DualList = (props) => {
   return (
     <div>
       <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <div style={{ display: 'flex', flex: 1, backgroundColor: '#F3F3F3' }}>
+        <div
+          style={{
+            display: 'flex',
+            flex: 1,
+            backgroundColor: '#F3F3F3',
+            minHeight: 'calc(100vh - 3.25rem)',
+          }}
+        >
           <CardList
             data={data.filter((item) => !item.added)}
             handleClick={handleClick}
             side="left"
+            title="Explore Strategies"
           />
         </div>
-        <div style={{ display: 'flex', flex: 1, backgroundColor: '#C6EAED' }}>
+        <div
+          style={{
+            display: 'flex',
+            flex: 1,
+            backgroundColor: '#C6EAED',
+            minHeight: 'calc(100vh - 3.25rem)',
+          }}
+        >
+          <div>
+            <ExportPopUp title="Export" />
+          </div>
           <CardList
             data={data.filter((item) => item.added)}
             handleClick={handleClick}
             side="right"
+            title="Your Plan"
           />
         </div>
       </div>

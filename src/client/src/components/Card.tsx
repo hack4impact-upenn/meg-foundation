@@ -86,13 +86,8 @@ const InfoDiv = styled.div`
 `;
 
 const Card = (props) => {
-  const {
-    title,
-    descriptionShort,
-    descriptionLong,
-    added,
-    handleClick,
-  } = props;
+  const { title, descriptionShort, descriptionLong, added, handleClick } =
+    props;
   console.log(props);
   const [expanded, setExpanded] = useState(false);
 
@@ -124,9 +119,6 @@ const Card = (props) => {
               fontWeight: 'bold',
             }}
           >
-            <div>{title}</div>
-            <Button>+ Add to Plan</Button>
-            <App></App>
             <div>{title ? title : 'NEED TITLE'}</div>
             {added ? (
               <Button
