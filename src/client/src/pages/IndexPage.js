@@ -4,7 +4,7 @@ import ExportPopUp from '../components/ExportPopUp.tsx';
 import Card from '../components/Card.tsx';
 import DualList from '../components/DualList.tsx';
 import CardList from '../components/CardList.tsx';
-// import DualList form '../components/DualList.tsx';
+import styled from 'styled-components';
 
 function IndexPage() {
   // Example API request with caching, fetch list of users.
@@ -16,6 +16,10 @@ function IndexPage() {
     })
   );
 
+  const header = styled.header`
+    height: 20;
+  `;
+
   //handleClick to change the status of the card
   // const handleClick = (array, id) => {
   //   array[id].added = !array[id].added;
@@ -26,19 +30,29 @@ function IndexPage() {
       id: 1,
       title: 'Card 1',
       added: true,
-      descriptionShort: 'This is a short description. Please look. hahahaha',
-      descriptionLong:
-        'Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description Test Card 1 Description  Test Card 1 Description Test Card 1 Description Test Card 1 Description  Test Card 1 Description Test Card 1 Description Test Card 1 Description  Test Card 1 Description Test Card 1 Description Test Card 1 Description ',
-
-      // call handleClick to change the status of the card
+      descriptionShort: 'This is a short description. ',
+      descriptionLong: 'This a long description.',
     },
     {
       id: 2,
       title: 'Card 2',
       added: false,
-      descriptionShort: 'This is a short description. Please look. hahahaha',
-      descriptionLong:
-        'Test Card 2 Description Test Card 2 Description Test Card 2 Description Test Card 2 Description Test Card 2 DescriptionTest Card 2 Description',
+      descriptionShort: 'This is a short description',
+      descriptionLong: 'This is a long description',
+    },
+    {
+      id: 3,
+      title: 'Card 3',
+      added: false,
+      descriptionShort: 'This is a short description',
+      descriptionLong: 'This is a long description',
+    },
+    {
+      id: 4,
+      title: 'Card 4',
+      added: false,
+      descriptionShort: 'This is a short description',
+      descriptionLong: 'This is a long description',
     },
   ];
 
@@ -48,35 +62,13 @@ function IndexPage() {
 
   return (
     <div className="container center">
-      <header className="hero">
-        <div className="hero-body">
+      {/* <header className="hero">
+        <div className="hero-body" style={{ padding: "2rem 1.5rem" }}>
           <h1 className="title">Welcome to Meg Foundation!</h1>
         </div>
-      </header>
-      <div>
-        <ExportPopUp title="Export" />
-      </div>
+      </header> */}
       <div>
         <DualList cardData={testArray}></DualList>
-        {isLoading ? (
-          'Loading...'
-        ) : error ? (
-          <p style={{ color: 'red' }}>An error occurred! {error}</p>
-        ) : (
-          <div className="is-flex is-flex-wrap-wrap">
-            {data.result.map((user) => (
-              <article key={user.id} className="box m-2">
-                <p className="has-text-weight-bold">
-                  {user.firstName} {user.lastName}
-                </p>
-                <p>{user.email}</p>
-              </article>
-            ))}
-          </div>
-        )}
-        <footer className="section">
-          To be filled in with the actual app, soon! :)
-        </footer>
       </div>
     </div>
   );

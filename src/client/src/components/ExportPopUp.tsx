@@ -33,6 +33,12 @@ const CancelButton = styled(Button)`
   }
 `;
 
+const ExportButton = styled(Button)`
+  position: absolute;
+  top: 1rem;
+  right: 0px;
+`;
+
 // Toggle components
 const Input = styled.input`
   opacity: 0;
@@ -139,10 +145,10 @@ function ExportPopUp(props) {
 
   return (
     <div>
-      <Button onClick={toggleModalIsOpen}>
+      <ExportButton onClick={toggleModalIsOpen}>
         <i className="fas fa-share-square fa-fw" style={{ color: 'white' }}></i>{' '}
         {props.title}
-      </Button>
+      </ExportButton>
       <ReactModal
         isOpen={modalIsOpen}
         style={customModalStyles}
