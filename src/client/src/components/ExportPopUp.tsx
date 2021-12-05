@@ -2,6 +2,7 @@ import { before } from 'lodash';
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
+import PrintFunction from '../components/PrintFunction.js';
 
 // *Styling*
 
@@ -293,6 +294,7 @@ function ExportPopUp(props) {
                 style={{ color: 'white' }}
               ></i>{' '}
               Download
+              <PrintFunction></PrintFunction>
             </Button>
             <Button onClick={toggleModalIsOpen}>
               <i
