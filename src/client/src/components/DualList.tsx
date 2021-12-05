@@ -50,6 +50,7 @@ const DualList = (props) => {
             flex: 1,
             backgroundColor: '#C6EAED',
           }}
+          id="card"
         >
           <div>
             <ExportPopUp title="Export" />
