@@ -1,25 +1,25 @@
 import jsPDF from 'jspdf';
 import styled from 'styled-components';
 
-const Button = styled.div`
-  border-radius: 30px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #1aabb8;
-  overflow: hidden;
-  padding: 10px;
-  background-color: #ffffff;
+import React, { useState } from 'react';
+import ReactModal from 'react-modal';
+
+const Button = styled.a`
+  background: transparent;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 14px;
+  background-color: #1aabb8;
+  color: white;
+  padding: 0.5em 1em;
   justify-content: center;
   cursor: pointer;
   align-items: center;
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.04),
+    0px 0px 1px rgba(0, 0, 0, 0.04);
   &:hover {
-    box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
-    transition-duration: 0.5s;
-  }
-  @media screen and (max-width: 768px) {
-    padding: 8px;
-    width: auto;
-    margin: auto;
+    background-color: #c6eaed;
+    color: white;
   }
 `;
 
@@ -33,7 +33,13 @@ const PrintFunction = () => {
   };
   return (
     <div className="PrintFunction">
-      <Button onClick={onButtonClick}>PDF</Button>
+      <Button onClick={onButtonClick}>
+        <i
+          className="fas fa-file-download fa-fw"
+          style={{ color: 'white' }}
+        ></i>{' '}
+        Download
+      </Button>
     </div>
   );
 };

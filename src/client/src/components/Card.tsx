@@ -95,7 +95,6 @@ const Card = (props) => {
 
   return (
     <div
-      id={'card'}
       className={screenWidth < 1280 ? '' : `is-pulled-left`}
       style={{
         marginBottom: '20px',

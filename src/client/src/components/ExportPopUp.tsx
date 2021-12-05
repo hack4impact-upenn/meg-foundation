@@ -288,14 +288,7 @@ function ExportPopUp(props) {
               width: '600px',
             }}
           >
-            <Button onClick={toggleModalIsOpen}>
-              <i
-                className="fas fa-file-download fa-fw"
-                style={{ color: 'white' }}
-              ></i>{' '}
-              Download
-              <PrintFunction></PrintFunction>
-            </Button>
+            <PrintFunction></PrintFunction>
             <Button onClick={toggleModalIsOpen}>
               <i
                 className="fas fa-envelope fa-fw"
