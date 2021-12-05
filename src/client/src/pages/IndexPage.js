@@ -70,6 +70,8 @@ function IndexPage() {
       </header> */}
       <div>
         <DualList cardData={testArray}></DualList>
+      </div>
+      <div style={{ display: 'none' }}>
         <ExportPDF cardData={testArray} expanded={true}></ExportPDF>
       </div>
     </div>
