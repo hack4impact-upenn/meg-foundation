@@ -70,7 +70,7 @@ function IndexPage() {
       </header> */}
       <div>
         <DualList cardData={testArray}></DualList>
-        {/* <ExportPDF cardData={testArray} expanded={true}></ExportPDF> */}
+        <ExportPDF cardData={testArray} expanded={true}></ExportPDF>
       </div>
     </div>
   );

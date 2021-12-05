@@ -27,7 +27,7 @@ const ExportPDF = (props) => {
   //if the card is not selected, it should be on the left and not on the right
 
   return (
-    <div>
+    <div id="card">
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <div
           style={{
