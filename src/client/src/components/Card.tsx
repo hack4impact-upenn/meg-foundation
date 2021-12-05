@@ -87,10 +87,17 @@ const InfoDiv = styled.div`
 `;
 
 const Card = (props) => {
-  const { title, descriptionShort, descriptionLong, added, handleClick } =
-    props;
+  const {
+    title,
+    descriptionShort,
+    descriptionLong,
+    added,
+    handleClick,
+    isPdf,
+    isExpanded,
+  } = props;
   console.log(props);
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(isExpanded);
 
   return (
     <div
@@ -121,41 +128,50 @@ const Card = (props) => {
             }}
           >
             <div>{title ? title : 'NEED TITLE'}</div>
-            {added ? (
-              <Button
-                style={{
-                  fontSize: '14px',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  height: '32px',
-                  backgroundColor: '#FFD1CE',
-                  color: '#FF453A',
-                }}
-                onClick={handleClick}
-              >
-                <img
-                  src={minus_icon}
-                  style={{ width: '16px', height: '16px', marginRight: '6px' }}
-                />
-                Remove
-              </Button>
-            ) : (
-              <Button
-                style={{
-                  fontSize: '14px',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  height: '32px',
-                }}
-                onClick={handleClick}
-              >
-                <img
-                  src={plus_icon}
-                  style={{ width: '16px', height: '16px', marginRight: '6px' }}
-                />
-                Add to Plan
-              </Button>
-            )}
+            {!isPdf &&
+              (added ? (
+                <Button
+                  style={{
+                    fontSize: '14px',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    height: '32px',
+                    backgroundColor: '#FFD1CE',
+                    color: '#FF453A',
+                  }}
+                  onClick={handleClick}
+                >
+                  <img
+                    src={minus_icon}
+                    style={{
+                      width: '16px',
+                      height: '16px',
+                      marginRight: '6px',
+                    }}
+                  />
+                  Remove
+                </Button>
+              ) : (
+                <Button
+                  style={{
+                    fontSize: '14px',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    height: '32px',
+                  }}
+                  onClick={handleClick}
+                >
+                  <img
+                    src={plus_icon}
+                    style={{
+                      width: '16px',
+                      height: '16px',
+                      marginRight: '6px',
+                    }}
+                  />
+                  Add to Plan
+                </Button>
+              ))}
 
             {/* </Titlebar> */}
           </div>
@@ -198,42 +214,44 @@ const Card = (props) => {
               {descriptionLong}
             </div>
           )}
-          <div
-            onClick={() => setExpanded(!expanded)}
-            style={{
-              borderRadius: '0px 0px 10px 10px',
-              display: 'flex',
-              justifyContent: 'space-around',
-              fontSize: '18px',
+          {!isPdf && (
+            <div
+              onClick={() => setExpanded(!expanded)}
+              style={{
+                borderRadius: '0px 0px 10px 10px',
+                display: 'flex',
+                justifyContent: 'space-around',
+                fontSize: '18px',
 
-              alignItems: 'center',
-              color: '#ACACAC',
-            }}
-          >
-            {expanded ? (
-              <div
-                style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  alignContent: 'center',
-                }}
-              >
-                <img src={less_icon} />
-                <span> Show Less</span>
-              </div>
-            ) : (
-              <div
-                style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginTop: '15px',
-                }}
-              >
-                <img src={more_icon} />
-                <span> Show More</span>
-              </div>
-            )}
-          </div>
+                alignItems: 'center',
+                color: '#ACACAC',
+              }}
+            >
+              {expanded ? (
+                <div
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    alignContent: 'center',
+                  }}
+                >
+                  <img src={less_icon} />
+                  <span> Show Less</span>
+                </div>
+              ) : (
+                <div
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: '15px',
+                  }}
+                >
+                  <img src={more_icon} />
+                  <span> Show More</span>
+                </div>
+              )}
+            </div>
+          )}
         </div>
         <div className="is-pulled-left">
           <div style={{ display: 'relative' }}>

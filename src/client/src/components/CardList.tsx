@@ -27,7 +27,7 @@ const Container = styled.div`
 `;
 
 const CardList = (props) => {
-  const { data, handleClick, title } = props;
+  const { data, handleClick, title, isPdf, allExpanded } = props;
 
   const [renderedArray, setArray] = useState(data);
 
@@ -101,6 +101,8 @@ const CardList = (props) => {
             descriptionLong={item.descriptionLong}
             added={item.added}
             handleClick={() => handleClick(item)}
+            isPdf={isPdf}
+            isExpanded={allExpanded}
           />
         ))}
       </Container>

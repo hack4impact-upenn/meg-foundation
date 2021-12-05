@@ -3,6 +3,7 @@ import api from '../api';
 import ExportPopUp from '../components/ExportPopUp.tsx';
 import Card from '../components/Card.tsx';
 import DualList from '../components/DualList.tsx';
+import ExportPDF from '../components/ExportPDF.tsx';
 import CardList from '../components/CardList.tsx';
 import styled from 'styled-components';
 
@@ -36,21 +37,21 @@ function IndexPage() {
     {
       id: 2,
       title: 'Card 2',
-      added: false,
+      added: true,
       descriptionShort: 'This is a short description',
       descriptionLong: 'This is a long description',
     },
     {
       id: 3,
       title: 'Card 3',
-      added: false,
+      added: true,
       descriptionShort: 'This is a short description',
       descriptionLong: 'This is a long description',
     },
     {
       id: 4,
       title: 'Card 4',
-      added: false,
+      added: true,
       descriptionShort: 'This is a short description',
       descriptionLong: 'This is a long description',
     },
@@ -69,6 +70,7 @@ function IndexPage() {
       </header> */}
       <div>
         <DualList cardData={testArray}></DualList>
+        {/* <ExportPDF cardData={testArray} expanded={true}></ExportPDF> */}
       </div>
     </div>
   );
