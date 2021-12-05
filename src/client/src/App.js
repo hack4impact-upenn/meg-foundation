@@ -44,22 +44,15 @@ function App() {
     <AuthContext.Provider value={authContextValue}>
       <Router>
         <AppContainer>
-          <ReactQueryCacheProvider queryCache={queryCache}>
-            <ReactQueryDevtools />
-            <main>
-              <Switch>
-                <PublicRoute exact path="/" component={IndexPage} />
-                <PublicRoute exact path="/login" component={LoginPage} />
-                <PublicRoute exact path="/register" component={RegisterPage} />
-                <PrivateRoute
-                  exact
-                  path="/dashboard"
-                  component={DashboardPage}
-                />
-                <Route exact={false} component={NotFoundPage} />
-              </Switch>
-            </main>
-          </ReactQueryCacheProvider>
+          <main>
+            <Switch>
+              <PublicRoute exact path="/" component={IndexPage} />
+              <PublicRoute exact path="/login" component={LoginPage} />
+              <PublicRoute exact path="/register" component={RegisterPage} />
+              <PrivateRoute exact path="/dashboard" component={DashboardPage} />
+              <Route exact={false} component={NotFoundPage} />
+            </Switch>
+          </main>
         </AppContainer>
       </Router>
     </AuthContext.Provider>
