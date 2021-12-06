@@ -4,25 +4,17 @@ import errorHandler from './error';
 import { Message, IMessage } from '../models/message.model';
 import TaskRouterCapability from 'twilio/lib/jwt/taskrouter/TaskRouterCapability';
 
-const twilio = require('twilio');
 const router = express.Router();
+const twilio = require('twilio');
 
 const accountSid = 'AC378e250f292f5825ca224d55a9fb0bf9';
 const authToken = '7adedf4fbe26085309b26f19709595cc';
 const client = new twilio(accountSid, authToken);
 
 router.post('/sendMessage', async (req, res) => {
-  const { content } = req.body;
-  const { sender } = req.body;
-  const { recipient } = req.body;
+  const { content, sender, recipient } = req.body;
 
   console.log('hello');
-
-  twilio.messages.create({
-    body: content,
-    from: sender,
-    to: recipient,
-  });
 
   const outgoingMessage = new Message({
     body: content,
@@ -30,9 +22,13 @@ router.post('/sendMessage', async (req, res) => {
     to: recipient,
   });
 
-  outgoingMessage
+  client.messages.create({
+    outgoingMessage,
+  });
+
+  return outgoingMessage
     .save()
-    .then(() => {
+    .then((outgoingMessage) => {
       res.status(200).send({
         success: true,
         msg: outgoingMessage,
