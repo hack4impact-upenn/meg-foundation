@@ -1,5 +1,3 @@
-import mongoose from 'mongoose';
-
 const { Schema } = mongoose;
 
 interface IMessage extends mongoose.Document {
