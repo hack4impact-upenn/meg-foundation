@@ -18,6 +18,7 @@ const Container = styled.div`
 
 const MobileList = (props) => {
   const [data, setData] = useState(props.cardData);
+  const [plan, setPlan] = useState(false);
 
   //handleClick to change the status of the card
   const handleClick = (target) => {
@@ -43,8 +44,36 @@ const MobileList = (props) => {
   return (
     <div>
       {/* <div style={{ display: 'flex', flexDirection: 'row' }}> */}
-      <Container>explore</Container>
-      <div
+      <Container onClick={() => setPlan(!plan)}>button</Container>
+
+      {plan ? (
+        <div
+          style={{
+            backgroundColor: '#C6EAED',
+          }}
+        >
+          <div>
+            <ExportPopUp title="Export" />
+          </div>
+          <CardList
+            data={data.filter((item) => item.added)}
+            handleClick={handleClick}
+          />
+        </div>
+      ) : (
+        <div
+          style={{
+            backgroundColor: '#F3F3F3',
+          }}
+        >
+          <CardList
+            data={data.filter((item) => !item.added)}
+            handleClick={handleClick}
+          />
+        </div>
+      )}
+
+      {/* <div
         style={{
           display: 'flex',
           flex: 1,
@@ -55,7 +84,7 @@ const MobileList = (props) => {
           data={data.filter((item) => !item.added)}
           handleClick={handleClick}
         />
-      </div>
+      </div> */}
 
       {/* </div> */}
     </div>

@@ -87,13 +87,8 @@ const InfoDiv = styled.div`
 `;
 
 const Card = (props) => {
-  const {
-    title,
-    descriptionShort,
-    descriptionLong,
-    added,
-    handleClick,
-  } = props;
+  const { title, descriptionShort, descriptionLong, added, handleClick } =
+    props;
   console.log(props);
   const [expanded, setExpanded] = useState(false);
 
@@ -123,6 +118,7 @@ const Card = (props) => {
               fontSize: '24px',
               color: '#585858',
               marginBottom: '20px',
+              width: '400px',
             }}
           >
             <div>{title ? title : 'NEED TITLE'}</div>
@@ -185,10 +181,16 @@ const Card = (props) => {
               fontFamily: 'BrandonTextMedium',
             }}
           >
-            <img
-              src={placeholder_image}
-              style={{ width: '230px', height: '230px', marginRight: '20px' }}
-            />
+            {/* {window.screen.width > 1280 ? ( */}
+            {window.screen.width > 1280 ? (
+              <img
+                src={placeholder_image}
+                style={{ width: '230px', height: '230px', marginRight: '20px' }}
+              />
+            ) : (
+              ''
+            )}
+
             {descriptionShort ? descriptionShort : 'no description'}
           </div>
           {expanded && (
