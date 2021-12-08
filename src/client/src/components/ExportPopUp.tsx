@@ -2,6 +2,7 @@ import { before } from 'lodash';
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
+import TextFunction from '../components/TextFunction.js';
 
 // *Styling*
 
@@ -301,13 +302,7 @@ function ExportPopUp(props) {
               ></i>{' '}
               Email
             </Button>
-            <Button onClick={toggleModalIsOpen}>
-              <i
-                className="fas fa-comment fa-fw"
-                style={{ color: 'white' }}
-              ></i>{' '}
-              Text
-            </Button>
+            <TextFunction></TextFunction>
           </div>
         </div>
       </ReactModal>
