@@ -3,6 +3,7 @@ import api from '../api';
 import ExportPopUp from '../components/ExportPopUp.tsx';
 import Card from '../components/Card.tsx';
 import DualList from '../components/DualList.tsx';
+import MobileList from '../components/MobileList.tsx';
 import CardList from '../components/CardList.tsx';
 import styled from 'styled-components';
 
@@ -68,12 +69,14 @@ function IndexPage() {
         </div>
       </header> */}
       {window.screen.width > 1280 ? (
-        <div>
-          <DualList cardData={testArray}></DualList>
-        </div>
+        <DualList cardData={testArray}></DualList>
       ) : (
-        <div>this is mobile view</div>
+        <div>
+          <MobileList cardData={testArray}></MobileList>
+        </div>
       )}
+
+      {/* <DualList cardData={testArray}></DualList> */}
     </div>
   );
 }
