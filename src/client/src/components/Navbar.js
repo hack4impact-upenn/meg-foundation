@@ -103,7 +103,7 @@ function Navbar() {
     >
       <div className="navbar-brand">
         <a
-          href="https://blackinnovationalliance.com/"
+          href="https://www.megfoundationforpain.org/"
           style={{ display: 'flex', alignItems: 'left' }}
         >
           {/* <Avatar src={process.env.PUBLIC_URL + '/img/BIA.png'} /> */}

@@ -67,9 +67,13 @@ function IndexPage() {
           <h1 className="title">Welcome to Meg Foundation!</h1>
         </div>
       </header> */}
-      <div>
-        <DualList cardData={testArray}></DualList>
-      </div>
+      {window.screen.width > 1280 ? (
+        <div>
+          <DualList cardData={testArray}></DualList>
+        </div>
+      ) : (
+        <div>this is mobile view</div>
+      )}
     </div>
   );
 }
