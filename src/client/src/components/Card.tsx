@@ -118,7 +118,6 @@ const Card = (props) => {
               fontSize: '24px',
               color: '#585858',
               marginBottom: '20px',
-              width: '400px',
             }}
           >
             <div>{title ? title : 'NEED TITLE'}</div>

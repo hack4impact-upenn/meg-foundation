@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CardList from './CardList.tsx';
 import ExportPopUp from './ExportPopUp.tsx';
+import ToggleButton from './ToggleButton.tsx';
 
 const Container = styled.div`
   border-radius: 10px;
@@ -20,6 +21,10 @@ const MobileList = (props) => {
   const [data, setData] = useState(props.cardData);
   const [plan, setPlan] = useState(false);
 
+  const toggle = () => {
+    setPlan(!plan);
+  };
+
   //handleClick to change the status of the card
   const handleClick = (target) => {
     const id = target.id;
@@ -37,21 +42,20 @@ const MobileList = (props) => {
     setData(newData);
   };
 
-  //need to implement a state that stores which cards are selected to be on the right.
-  //if the card is selected, it should be on the right and not on the left
-  //if the card is not selected, it should be on the left and not on the right
-
   return (
     <div>
-      {/* <div style={{ display: 'flex', flexDirection: 'row' }}> */}
-      <Container onClick={() => setPlan(!plan)}>button</Container>
-
       {plan ? (
         <div
           style={{
+            height: '100vh',
             backgroundColor: '#C6EAED',
           }}
         >
+          <ToggleButton
+            LeftTitle="Explore"
+            RightTitle="Your Plan"
+            toggle={toggle}
+          ></ToggleButton>
           <div>
             <ExportPopUp title="Export" />
           </div>
@@ -63,30 +67,21 @@ const MobileList = (props) => {
       ) : (
         <div
           style={{
+            height: '100vh',
             backgroundColor: '#F3F3F3',
           }}
         >
+          <ToggleButton
+            LeftTitle="Explore"
+            RightTitle="Your Plan"
+            toggle={toggle}
+          ></ToggleButton>
           <CardList
             data={data.filter((item) => !item.added)}
             handleClick={handleClick}
           />
         </div>
       )}
-
-      {/* <div
-        style={{
-          display: 'flex',
-          flex: 1,
-          backgroundColor: '#F3F3F3',
-        }}
-      >
-        <CardList
-          data={data.filter((item) => !item.added)}
-          handleClick={handleClick}
-        />
-      </div> */}
-
-      {/* </div> */}
     </div>
   );
 };

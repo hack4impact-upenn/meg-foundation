@@ -29,7 +29,13 @@ const DualList = (props) => {
 
   return (
     <div>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          // width: '100vw'
+        }}
+      >
         <div
           style={{
             display: 'flex',
