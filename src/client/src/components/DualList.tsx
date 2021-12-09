@@ -63,10 +63,12 @@ const DualList = (props) => {
           />
         </div>
       </div>
-      <ExportPDF
-        cardData={data.filter((item) => item.added)}
-        expanded={true}
-      ></ExportPDF>
+      <div style={{ display: 'none' }}>
+        <ExportPDF
+          cardData={data.filter((item) => item.added)}
+          expanded={true}
+        ></ExportPDF>
+      </div>
     </div>
   );
 };

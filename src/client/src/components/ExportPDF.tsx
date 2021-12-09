@@ -37,7 +37,7 @@ const ExportPDF = (props) => {
           }}
         >
           <CardList
-            data={data.filter((item) => item.added)}
+            data={props.cardData.filter((item) => item.added)}
             handleClick={handleClick}
             side="right"
             title="Your Plan"
