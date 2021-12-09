@@ -6,9 +6,9 @@ import errorHandler from './error';
 const router = express.Router();
 const twilio = require('twilio');
 
-const accountSid = 'AC378e250f292f5825ca224d55a9fb0bf9';
-const authToken = '319d1427f8ab541c6dfe6a69cba2f70a';
-const client = new twilio(accountSid, authToken);
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require('twilio')(accountSid, authToken);
 
 router.post('/sendMessage', async (req, res) => {
   const { content, sender, recipient } = req.body;

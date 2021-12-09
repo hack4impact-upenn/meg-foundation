@@ -21,40 +21,52 @@ const Button = styled.a`
   }
 `;
 
-var axios = require('axios');
-var data = JSON.stringify({
-  content: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-  sender: '+17404869699',
-  recipient: '+14086637543',
-});
-
-var config = {
-  method: 'post',
-  url: 'http://localhost:5000/api/twilio/sendMessage',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  data: data,
-};
-
 const TextFunction = () => {
   const onButtonClick = () => {
-    axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        console.log(error);
+    var http = require('follow-redirects').http;
+    var fs = require('fs');
+    var options = {
+      method: 'POST',
+      hostname: 'localhost',
+      port: 5000,
+      path: '/api/twilio/sendMessage',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      maxRedirects: 20,
+    };
+
+    var req = http.request(options, function (res) {
+      var chunks = [];
+
+      res.on('data', function (chunk) {
+        chunks.push(chunk);
       });
+
+      res.on('end', function (chunk) {
+        var body = Buffer.concat(chunks);
+        console.log(body.toString());
+      });
+
+      res.on('error', function (error) {
+        console.error(error);
+      });
+    });
+
+    var postData = JSON.stringify({
+      content: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+      sender: '+15628501176',
+      recipient: '+14086637543',
+    });
+
+    req.write(postData);
+
+    req.end();
   };
   return (
-    <div className="PrintFunction">
+    <div>
       <Button onClick={onButtonClick}>
-        <i
-          className="fas fa-file-download fa-fw"
-          style={{ color: 'white' }}
-        ></i>{' '}
-        Text
+        <i className="fas fa-comment fa-fw" style={{ color: 'white' }}></i> Text
       </Button>
     </div>
   );
