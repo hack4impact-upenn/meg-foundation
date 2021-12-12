@@ -2,6 +2,7 @@ import { before } from 'lodash';
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
+import EmailPopUp from './EmailPopUp.tsx';
 
 // *Styling*
 
@@ -294,13 +295,7 @@ function ExportPopUp(props) {
               ></i>{' '}
               Download
             </Button>
-            <Button onClick={toggleModalIsOpen}>
-              <i
-                className="fas fa-envelope fa-fw"
-                style={{ color: 'white' }}
-              ></i>{' '}
-              Email
-            </Button>
+            <EmailPopUp title="Email" />
             <Button onClick={toggleModalIsOpen}>
               <i
                 className="fas fa-comment fa-fw"

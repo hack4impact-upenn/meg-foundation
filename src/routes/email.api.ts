@@ -8,13 +8,15 @@ const nodemailer = require('nodemailer');
 
 const router = express.Router();
 
-router.get('/', async (_req, res) => {
-  sendMail()
+router.post('/', async (req, res) => {
+  const { targetEmail } = req.body;
+  console.log(targetEmail);
+  sendMail(targetEmail)
     .then(() => res.sendStatus(200))
     .catch((e) => errorHandler(res, e.message));
 });
 
-async function sendMail() {
+async function sendMail(targetEmail: String) {
   console.log('Sending Mail');
   let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -30,9 +32,9 @@ async function sendMail() {
 
   let mailOptions = {
     from: process.env.MAIL_USERNAME,
-    to: process.env.MAIL_USERNAME2,
-    subject: 'ProjectChecker - Website Is Down',
-    text: 'This is a test returned with a status of blank yet again',
+    to: targetEmail,
+    subject: 'Meg Foundation - PDF',
+    text: 'This is a placeholder for the PDF. Just squint really hard.',
   };
 
   return transporter.sendMail(mailOptions);
