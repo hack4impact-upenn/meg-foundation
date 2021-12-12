@@ -2,6 +2,7 @@ import { before } from 'lodash';
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
+import { isMobile } from 'react-device-detect';
 
 // *Styling*
 
@@ -37,6 +38,7 @@ const ExportButton = styled(Button)`
   position: absolute;
   top: 1rem;
   right: 0px;
+  height: ${isMobile ? '35px' : '45px'};
 `;
 
 // Toggle components
