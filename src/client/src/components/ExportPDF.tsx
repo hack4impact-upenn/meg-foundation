@@ -28,22 +28,31 @@ const ExportPDF = (props) => {
 
   return (
     <div id="card">
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <div
-          style={{
-            display: 'flex',
-            flex: 1,
-            backgroundColor: '#C6EAED',
-          }}
-        >
-          <CardList
-            data={props.cardData.filter((item) => item.added)}
-            handleClick={handleClick}
-            side="right"
-            title="Your Plan"
-            isPdf={true}
-            allExpanded={props.expanded}
-          />
+      <div
+        style={{
+          display: 'flex',
+          flex: 1,
+          backgroundColor: '#C6EAED',
+          width: '100%',
+        }}
+      >
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div
+            style={{
+              display: 'flex',
+              flex: 1,
+              backgroundColor: '#C6EAED',
+            }}
+          >
+            <CardList
+              data={props.cardData.filter((item) => item.added)}
+              handleClick={handleClick}
+              side="right"
+              title="Your Plan"
+              isPdf={true}
+              allExpanded={props.expanded}
+            />
+          </div>
         </div>
       </div>
     </div>
