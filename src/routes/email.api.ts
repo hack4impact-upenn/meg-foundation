@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { Console } from 'console';
 import express from 'express';
 import errorHandler from './error';
@@ -10,15 +11,14 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   const { targetEmail } = req.body;
-  console.log(targetEmail);
   sendMail(targetEmail)
     .then(() => res.sendStatus(200))
     .catch((e) => errorHandler(res, e.message));
 });
 
-async function sendMail(targetEmail: String) {
+async function sendMail(targetEmail: string) {
   console.log('Sending Mail');
-  let transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       type: 'OAuth2',
@@ -30,7 +30,7 @@ async function sendMail(targetEmail: String) {
     },
   });
 
-  let mailOptions = {
+  const mailOptions = {
     from: process.env.MAIL_USERNAME,
     to: targetEmail,
     subject: 'Meg Foundation - PDF',
