@@ -182,7 +182,6 @@ function ExportPopUp(props) {
                 alignItems: 'center',
                 fontSize: '24px',
                 color: '#585858',
-                width: '600px',
               }}
             >
               <h1 style={{ fontWeight: 'bold' }}>Export Your Plan</h1>

@@ -46,7 +46,6 @@ const Button = styled.div`
   font-style: normal;
   line-height: 19px;
   letter-spacing: 0em;
-  text-align: left;
   border-radius: 30px;
   border-style: solid;
   border-width: 1px;
@@ -65,7 +64,10 @@ const Button = styled.div`
   @media screen and (max-width: 768px) {
     padding: 8px;
     width: auto;
+    text-align: right;
     margin: auto;
+    float: right;
+    margin-left: auto;
   }
 `;
 
@@ -155,8 +157,9 @@ const Card = (props) => {
                   fontSize: '14px',
                   display: 'flex',
                   flexDirection: 'row',
-                  height: '32px',
                   float: 'right',
+                  marginLeft: 'auto',
+                  height: '32px',
                 }}
                 onClick={handleClick}
               >
