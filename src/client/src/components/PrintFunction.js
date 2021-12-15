@@ -2,7 +2,6 @@ import jsPDF from 'jspdf';
 import styled from 'styled-components';
 
 import React, { useState } from 'react';
-import ReactModal from 'react-modal';
 
 const Button = styled.a`
   background: transparent;

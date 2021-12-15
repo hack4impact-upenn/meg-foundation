@@ -11,7 +11,11 @@ router.post('/sendMessage', async (req, res) => {
   const authToken = process.env.TWILIO_AUTH_TOKEN;
   const client = twilio(accountSid, authToken);
 
-  const { content, recipient } = req.body;
+  const { url, recipient } = req.body;
+
+  const content =
+    'Congratulations on taking the first step to taking control of your pain management! Please click the following url to access your custom pain management plan: ' +
+    url;
 
   client.messages
     .create({

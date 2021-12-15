@@ -244,16 +244,16 @@ function ExportPopUp(props) {
       }
     }
 
-    if (e != 0) {
-      try {
-        await axios.post('api/email/', {
-          to: e,
-        });
-      } catch (err) {
-        setEmailError(true);
-        return;
-      }
-    }
+    // if (e != 0) {
+    //   try {
+    //     await axios.post('api/email/', {
+    //       to: e,
+    //     });
+    //   } catch (err) {
+    //     setEmailError(true);
+    //     return;
+    //   }
+    // }
     setSuccess(true);
   };
 
@@ -348,13 +348,7 @@ function ExportPopUp(props) {
               color: '#585858',
             }}
           >
-            <Button onClick={toggleModalIsOpen}>
-              <i
-                className="fas fa-file-download fa-fw"
-                style={{ color: 'white' }}
-              ></i>{' '}
-              Download
-            </Button>
+            <PrintFunction />
 
             <Button onClick={handleSend}>
               <i
