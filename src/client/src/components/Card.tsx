@@ -96,13 +96,22 @@ const Card = (props) => {
     <div
       id={'card'}
       className={screenWidth < 1280 ? '' : `is-pulled-left`}
-      style={{
-        marginBottom: '20px',
-        marginLeft: '2px',
-        marginRight: '10px',
-        backgroundColor: '#FFFFFF',
-        borderRadius: '10px',
-      }}
+      style={
+        screenWidth < 1280
+          ? {
+              marginBottom: '20px',
+              backgroundColor: '#FFFFFF',
+              borderRadius: '10px',
+              width: '78vw',
+            }
+          : {
+              marginBottom: '20px',
+              marginLeft: '2px',
+              marginRight: '10px',
+              backgroundColor: '#FFFFFF',
+              borderRadius: '10px',
+            }
+      }
     >
       <Container
       // onClick={() => handleClick()}
@@ -113,7 +122,6 @@ const Card = (props) => {
             style={{
               display: 'flex',
               flexDirection: 'row',
-              justifyContent: 'space-between',
               alignItems: 'center',
               fontSize: '24px',
               color: '#585858',
@@ -127,6 +135,8 @@ const Card = (props) => {
                   fontSize: '14px',
                   display: 'flex',
                   flexDirection: 'row',
+                  float: 'right',
+                  marginLeft: 'auto',
                   height: '32px',
                   backgroundColor: '#FFD1CE',
                   color: '#FF453A',
@@ -146,6 +156,7 @@ const Card = (props) => {
                   display: 'flex',
                   flexDirection: 'row',
                   height: '32px',
+                  float: 'right',
                 }}
                 onClick={handleClick}
               >

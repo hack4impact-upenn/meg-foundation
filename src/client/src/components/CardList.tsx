@@ -82,7 +82,7 @@ const CardList = (props) => {
   return (
     <div
       style={
-        screenWidth < 1280 ? { display: 'flex', justifyContent: 'center' } : {}
+        screenWidth < 1280 ? { display: 'flex', justifyContent: 'left' } : {}
       }
     >
       <header className="hero">
