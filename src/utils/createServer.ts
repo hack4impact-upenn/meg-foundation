@@ -3,6 +3,7 @@ import path from 'path';
 import cors from 'cors';
 import userRouter from '../routes/user.api';
 import cardRouter from '../routes/card.api';
+import emailRouter from '../routes/email.api';
 
 const createServer = (): express.Express => {
   const app = express();
@@ -14,6 +15,7 @@ const createServer = (): express.Express => {
   // API Routes
   app.use('/api/users', userRouter);
   app.use('/api/card', cardRouter);
+  app.use('/api/email', emailRouter);
 
   // Serving static files
   if (process.env.NODE_ENV === 'production') {
