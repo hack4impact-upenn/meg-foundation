@@ -2,12 +2,15 @@ import { before } from 'lodash';
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
+import TextFunction from '../components/TextFunction.js';
 import EmailPopUp from './EmailPopUp.tsx';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import InputMask from 'react-input-mask';
 import '../styles/phoneInput.css';
 import { isValidPhoneNumber } from 'react-phone-number-input';
+
+
 // *Styling*
 
 // Rounded Button
