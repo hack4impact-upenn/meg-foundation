@@ -45,7 +45,6 @@ const TextFunction = () => {
 
       res.on('end', function (chunk) {
         var body = Buffer.concat(chunks);
-        console.log(body.toString());
       });
 
       res.on('error', function (error) {

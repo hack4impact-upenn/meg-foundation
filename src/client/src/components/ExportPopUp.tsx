@@ -6,10 +6,9 @@ import TextFunction from '../components/TextFunction.js';
 import EmailPopUp from './EmailPopUp.tsx';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
-import InputMask from 'react-input-mask';
 import '../styles/phoneInput.css';
 import { isValidPhoneNumber } from 'react-phone-number-input';
-
+import axios from 'axios';
 
 // *Styling*
 
@@ -177,7 +176,6 @@ const customModalStyles = {
 // *PopUp Component*
 
 function ExportPopUp(props) {
-  let subtitle;
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState();
@@ -208,7 +206,7 @@ function ExportPopUp(props) {
       return -1;
     }
     setEmailError(false);
-    return 1;
+    return email;
   };
 
   const phoneValidation = () => {
@@ -221,16 +219,39 @@ function ExportPopUp(props) {
       return -1;
     }
     setPhoneError(false);
-    return 1;
+    return phoneNumber;
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     const p = phoneValidation();
     const e = emailValidation();
 
     if (p === -1 || e === -1 || (p === 0 && e == 0)) {
       setSuccess(false);
       return;
+    }
+
+    if (p != 0) {
+      try {
+        await axios.post('api/twilio/sendMessage', {
+          url: '',
+          recipient: p,
+        });
+      } catch (err) {
+        setPhoneError(true);
+        return;
+      }
+    }
+
+    if (e != 0) {
+      try {
+        await axios.post('api/email/', {
+          to: e,
+        });
+      } catch (err) {
+        setEmailError(true);
+        return;
+      }
     }
     setSuccess(true);
   };
