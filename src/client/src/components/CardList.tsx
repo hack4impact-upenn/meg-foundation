@@ -26,8 +26,27 @@ const Container = styled.div`
   }
 `;
 
+const ContainerPDF = styled.div`
+  border-radius: 10px;
+  overflow-y: scroll;
+  width: ${displayWidth};
+  padding: 5px 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  @media screen and (max-width: 768px) {
+    max-width: 90vw;
+    padding: 0px 0px;
+    width: auto;
+    margin: 0px;
+    overflow-x: hidden;
+  }
+`;
+
 const CardList = (props) => {
-  const { data, handleClick, title } = props;
+  const { data, handleClick, title, isPdf, allExpanded } = props;
 
   const [renderedArray, setArray] = useState(data);
 
@@ -92,18 +111,37 @@ const CardList = (props) => {
           </h1>
         </div>
       </header>
-      <Container>
-        {data.map((item, id) => (
-          <Card
-            key={id}
-            title={item.title}
-            descriptionShort={item.descriptionShort}
-            descriptionLong={item.descriptionLong}
-            added={item.added}
-            handleClick={() => handleClick(item)}
-          />
-        ))}
-      </Container>
+      {isPdf ? (
+        <ContainerPDF>
+          {data.map((item, id) => (
+            <Card
+              key={id}
+              title={item.title}
+              descriptionShort={item.descriptionShort}
+              descriptionLong={item.descriptionLong}
+              added={item.added}
+              handleClick={() => handleClick(item)}
+              isPdf={isPdf}
+              isExpanded={allExpanded}
+            />
+          ))}
+        </ContainerPDF>
+      ) : (
+        <Container>
+          {data.map((item, id) => (
+            <Card
+              key={id}
+              title={item.title}
+              descriptionShort={item.descriptionShort}
+              descriptionLong={item.descriptionLong}
+              added={item.added}
+              handleClick={() => handleClick(item)}
+              isPdf={isPdf}
+              isExpanded={allExpanded}
+            />
+          ))}
+        </Container>
+      )}
     </div>
   );
 };

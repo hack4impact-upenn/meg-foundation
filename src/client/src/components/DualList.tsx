@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CardList from './CardList.tsx';
+import ExportPDF from './ExportPDF.tsx';
 import ExportPopUp from './ExportPopUp.tsx';
 
 const DualList = (props) => {
@@ -61,6 +62,12 @@ const DualList = (props) => {
             title="Your Plan"
           />
         </div>
+      </div>
+      <div style={{ display: 'none' }}>
+        <ExportPDF
+          cardData={data.filter((item) => item.added)}
+          expanded={true}
+        ></ExportPDF>
       </div>
     </div>
   );

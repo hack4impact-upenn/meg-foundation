@@ -2,6 +2,7 @@ import { before } from 'lodash';
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
+import PrintFunction from '../components/PrintFunction.js';
 import TextFunction from '../components/TextFunction.js';
 import EmailPopUp from './EmailPopUp.tsx';
 import 'react-phone-number-input/style.css';
