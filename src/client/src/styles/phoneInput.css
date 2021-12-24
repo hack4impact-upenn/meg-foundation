@@ -1,0 +1,31 @@
+input.PhoneInputInput {
+  width: 20rem;
+  height: 3rem;
+  display: block;
+  border: none;
+  padding: 0.625rem 0;
+  border-bottom: solid 1px #2dabb7;
+  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 96%,
+    #2dabb7 4%
+  );
+  background-position: -20rem 0;
+  background-size: 20rem 100%;
+  background-repeat: no-repeat;
+  filter: brightness(0.8);
+}
+
+input.PhoneInputInput:focus {
+  box-shadow: none;
+  outline: none;
+  background-position: 0 0;
+}
+
+input.PhoneInputInput:focus::-webkit-input-placeholder {
+  color: #2dabb7;
+  font-size: 0.75rem;
+  transform: translateY(-1.25rem);
+  visibility: visible !important;
+}

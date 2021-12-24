@@ -2,6 +2,14 @@ import { before } from 'lodash';
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
+import PrintFunction from '../components/PrintFunction.js';
+import TextFunction from '../components/TextFunction.js';
+import EmailPopUp from './EmailPopUp.tsx';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
+import '../styles/phoneInput.css';
+import { isValidPhoneNumber } from 'react-phone-number-input';
+import axios from 'axios';
 
 // *Styling*
 
@@ -69,6 +77,18 @@ const Slider = styled.span`
   }
 `;
 
+const Error = styled.div`
+  color: red;
+  font-family: 'BrandonTextMedium';
+`;
+
+const Success = styled.div`
+  text-align: right;
+  color: #82b500;
+  font-family: 'BrandonTextMedium';
+  font-size: 1rem;
+`;
+
 const RoundedSlider = styled(Slider)`
   border-radius: 34px;
   &:before {
@@ -91,6 +111,36 @@ const Switch = styled.label`
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
+  }
+`;
+
+const TextInput = styled.input`
+  width: 20rem;
+  height: 3rem;
+  display: block;
+  border: none;
+  padding: 0.625rem 0;
+  border-bottom: solid 1px #2dabb7;
+  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 96%,
+    #2dabb7 4%
+  );
+  background-position: -20rem 0;
+  background-size: 20rem 100%;
+  background-repeat: no-repeat;
+  filter: brightness(0.8);
+  &:focus {
+    box-shadow: none;
+    outline: none;
+    background-position: 0 0;
+    &::-webkit-input-placeholder {
+      color: #2dabb7;
+      font-size: 0.75rem;
+      transform: translateY(-1.25rem);
+      visibility: visible !important;
+    }
   }
 `;
 
@@ -127,21 +177,85 @@ const customModalStyles = {
 // *PopUp Component*
 
 function ExportPopUp(props) {
-  let subtitle;
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [inclDoc, setInclDoc] = useState(true);
-  const [inclDet, setInclDet] = useState(true);
+  const [emailError, setEmailError] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState();
+  const [phoneError, setPhoneError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const toggleModalIsOpen = () => {
     setModalIsOpen(!modalIsOpen);
+    setSuccess(false);
   };
 
-  function handleClick() {
-    setInclDet(!inclDet);
-    console.log(inclDet);
-    let val: string = inclDet ? 'fas fa-check-circle' : 'far fa-check-circle';
-    document.getElementById('detailedToggle').setAttribute('className', val);
-  }
+  const closeModal = () => {
+    (document.getElementById('email-input') as HTMLInputElement).value = '';
+    setPhoneNumber(null);
+    setModalIsOpen(false);
+    setSuccess(false);
+  };
+
+  const emailValidation = () => {
+    const email = (document.getElementById('email-input') as HTMLInputElement)
+      .value;
+    if (!email) {
+      setEmailError(false);
+      return 0;
+    }
+    if (!email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/)) {
+      setEmailError(true);
+      return -1;
+    }
+    setEmailError(false);
+    return email;
+  };
+
+  const phoneValidation = () => {
+    if (!phoneNumber) {
+      setPhoneError(false);
+      return 0;
+    }
+    if (!isValidPhoneNumber(phoneNumber)) {
+      setPhoneError(true);
+      return -1;
+    }
+    setPhoneError(false);
+    return phoneNumber;
+  };
+
+  const handleSend = async () => {
+    const p = phoneValidation();
+    const e = emailValidation();
+
+    if (p === -1 || e === -1 || (p === 0 && e == 0)) {
+      setSuccess(false);
+      return;
+    }
+
+    if (p != 0) {
+      try {
+        await axios.post('api/twilio/sendMessage', {
+          url: '',
+          recipient: p,
+        });
+      } catch (err) {
+        setPhoneError(true);
+        return;
+      }
+    }
+
+    // if (e != 0) {
+    //   try {
+    //     await axios.post('api/email/', {
+    //       to: e,
+    //     });
+    //   } catch (err) {
+    //     setEmailError(true);
+    //     return;
+    //   }
+    // }
+    setSuccess(true);
+  };
 
   return (
     <div>
@@ -160,8 +274,8 @@ function ExportPopUp(props) {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            gap: '40px',
-            padding: '20px',
+            gap: '15px',
+            padding: '5px',
           }}
         >
           {/* Header */}
@@ -178,13 +292,13 @@ function ExportPopUp(props) {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                fontSize: '24px',
+                fontSize: '1.5rem',
                 color: '#585858',
-                width: '600px',
+                width: '28rem',
               }}
             >
               <h1 style={{ fontWeight: 'bold' }}>Export Your Plan</h1>
-              <CancelButton onClick={toggleModalIsOpen}>
+              <CancelButton onClick={closeModal}>
                 <i
                   className="fas fa-times fa-fw"
                   style={{ color: 'white' }}
@@ -192,121 +306,56 @@ function ExportPopUp(props) {
                 Cancel
               </CancelButton>
             </div>
-            <div>Download a summary of your plan</div>
+            <div>Export a summary of your plan</div>
           </div>
 
-          {/* Doctor's copy */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              gap: '10px',
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                color: '#585858',
-                width: '600px',
-              }}
-            >
-              <div style={{ fontWeight: 'bold' }}>
-                Would you like to include a doctor's copy?
-              </div>
-              <div>
-                <Switch>
-                  <Input type="checkbox" />
-                  <RoundedSlider></RoundedSlider>
-                </Switch>
-              </div>
-            </div>
-            <div
-              style={{
-                width: '600px',
-              }}
-            >
-              The doctor’s copy is a Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Sed eu justo eros. Nam vitae orci augue.
-            </div>
+          {/* Email the plan */}
+          {emailError ? (
+            <Error>The email you entered is invalid</Error>
+          ) : (
+            <br />
+          )}
+          <div>
+            <TextInput type="email" placeholder="Email" id="email-input" />
           </div>
 
-          {/* Detailed copy */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              gap: '10px',
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                color: '#585858',
-                width: '600px',
-              }}
-            >
-              <div style={{ fontWeight: 'bold' }}>
-                Would you like to include a detailed copy?
-              </div>
-              <div>
-                <Switch>
-                  <Input type="checkbox" />
-                  <RoundedSlider></RoundedSlider>
-                </Switch>
-              </div>
-            </div>
-            <div
-              style={{
-                width: '600px',
-              }}
-            >
-              The detailed copy is a Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Sed eu justo eros. Nam vitae orci augue.
-            </div>
+          {/* Text the plan */}
+          {/* <div >
+                <TextInput type="tel" placeholder='Phone Number' id="phone-input"/> 
+              </div> */}
+          {phoneError ? (
+            <Error>The phone number you entered is invalid</Error>
+          ) : (
+            <br />
+          )}
+          <div style={{ width: '20rem' }}>
+            <PhoneInput
+              placeholder="Phone Number"
+              defaultCountry="US"
+              value={phoneNumber}
+              onChange={setPhoneNumber}
+            />
           </div>
+          {success ? <Success>Plan Sent!</Success> : <br />}
 
           {/* Export Options */}
-          <div style={{ fontWeight: 'bold', color: '#585858' }}>
-            How would you like to receive your plan?
-          </div>
           <div
             style={{
               display: 'flex',
               flexDirection: 'row',
-              justifyContent: 'space-evenly',
+              justifyContent: 'space-between',
               alignItems: 'center',
               color: '#585858',
-              width: '600px',
             }}
           >
-            <Button onClick={toggleModalIsOpen}>
+            <PrintFunction />
+
+            <Button onClick={handleSend}>
               <i
-                className="fas fa-file-download fa-fw"
+                className="fas fa-share-square fa-fw"
                 style={{ color: 'white' }}
               ></i>{' '}
-              Download
-            </Button>
-            <Button onClick={toggleModalIsOpen}>
-              <i
-                className="fas fa-envelope fa-fw"
-                style={{ color: 'white' }}
-              ></i>{' '}
-              Email
-            </Button>
-            <Button onClick={toggleModalIsOpen}>
-              <i
-                className="fas fa-comment fa-fw"
-                style={{ color: 'white' }}
-              ></i>{' '}
-              Text
+              Send
             </Button>
           </div>
         </div>

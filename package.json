@@ -68,6 +68,7 @@
     "@types/socket.io": "^2.1.8",
     "@types/styled-components": "^5.1.4",
     "@types/uuid": "^8.3.0",
+    "axios": "^0.24.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "bulma": "^0.9.1",
@@ -88,9 +89,11 @@
     "mongoose": "^5.9.21",
     "multer": "^1.4.2",
     "node-sass": "4.14.1",
+    "nodemailer": "^6.7.2",
     "react-bulma-components": "^3.4.0",
     "react-dom": "^17.0.1",
     "react-modal": "^3.14.3",
+    "react-phone-number-input": "^3.1.44",
     "react-query": "^2.26.3",
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.3.1",
@@ -99,6 +102,7 @@
     "socket.io": "^2.3.0",
     "swiper": "^6.3.5",
     "ts-node": "^8.10.2",
+    "twilio": "^3.71.3",
     "typescript": "^3.9.5",
     "victory": "^35.3.5"
   }
