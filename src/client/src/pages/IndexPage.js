@@ -1,9 +1,7 @@
 import { useQuery } from 'react-query';
 import api from '../api';
-import ExportPopUp from '../components/ExportPopUp.tsx';
 import Card from '../components/Card.tsx';
 import DualList from '../components/DualList.tsx';
-import ExportPDF from '../components/ExportPDF.tsx';
 import CardList from '../components/CardList.tsx';
 import styled from 'styled-components';
 

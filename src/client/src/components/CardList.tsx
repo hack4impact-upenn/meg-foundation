@@ -46,7 +46,7 @@ const ContainerPDF = styled.div`
 `;
 
 const CardList = (props) => {
-  const { data, handleClick, title, isPdf, allExpanded } = props;
+  const { data, handleClick, title, allExpanded } = props;
 
   const [renderedArray, setArray] = useState(data);
 
@@ -111,37 +111,19 @@ const CardList = (props) => {
           </h1>
         </div>
       </header>
-      {isPdf ? (
-        <ContainerPDF>
-          {data.map((item, id) => (
-            <Card
-              key={id}
-              title={item.title}
-              descriptionShort={item.descriptionShort}
-              descriptionLong={item.descriptionLong}
-              added={item.added}
-              handleClick={() => handleClick(item)}
-              isPdf={isPdf}
-              isExpanded={allExpanded}
-            />
-          ))}
-        </ContainerPDF>
-      ) : (
-        <Container>
-          {data.map((item, id) => (
-            <Card
-              key={id}
-              title={item.title}
-              descriptionShort={item.descriptionShort}
-              descriptionLong={item.descriptionLong}
-              added={item.added}
-              handleClick={() => handleClick(item)}
-              isPdf={isPdf}
-              isExpanded={allExpanded}
-            />
-          ))}
-        </Container>
-      )}
+      <Container>
+        {data.map((item, id) => (
+          <Card
+            key={id}
+            title={item.title}
+            descriptionShort={item.descriptionShort}
+            descriptionLong={item.descriptionLong}
+            added={item.added}
+            handleClick={() => handleClick(item)}
+            isExpanded={allExpanded}
+          />
+        ))}
+      </Container>
     </div>
   );
 };
