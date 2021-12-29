@@ -123,10 +123,10 @@ const styles = StyleSheet.create({
 
 const PDFCard = ({ title, descriptionShort, descriptionLong }) => {
   return (
-    <View style={styles.card}>
+    <View style={styles.card} wrap={false}>
       <Text style={{ paddingBottom: '10px' }}>{title}</Text>
-      {/* Move wrap=false to top view in order to make it impossible for their to be page breaks with cards */}
-      <View style={styles.descriptionShort} wrap={false}>
+      {/* Move wrap=false to view below in order to make it possible for cards to split with page breaks */}
+      <View style={styles.descriptionShort}>
         <Image style={[styles.image]} src={placeholder_image} />
         <Text
           style={{
