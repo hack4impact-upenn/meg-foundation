@@ -8,7 +8,8 @@ const DualList = (props) => {
   const [data, setData] = useState(props.cardData);
   const [value, setValue] = useQueryString('plan', 0);
   //handleClick to change the status of the card
-  const handleClick = (target) => {
+  const handleClick = (target, edit) => {
+    console.log('aaaa');
     const id = target.id;
     const newData = data.map((item) => {
       if (item.id === id) {
@@ -20,24 +21,41 @@ const DualList = (props) => {
       }
       return item;
     });
-
     setData(newData);
 
-    // generate enumeration
-    var num = 0;
-    newData.forEach((element, i) => {
-      if (element.added === true) {
-        num = num + 2 ** i;
-      }
-    });
-    console.log(num);
+    if (edit) {
+      // generate enumeration
+      var num = 0;
+      newData.forEach((element, i) => {
+        if (element.added === true) {
+          num = num + 2 ** i;
+        }
+      });
 
-    setValue(num);
+      setValue(num);
+    }
+  };
+
+  const updateData = (newData) => {
+    setData(newData);
   };
 
   useEffect(() => {
     const parsed = qs.parse(location.search);
-    console.log(parsed);
+    var newData = [...data];
+
+    var num = parseInt(parsed.plan);
+    var i = 0;
+    while (num > 0) {
+      const modulo = num % 2;
+      num = Math.floor(num / 2);
+      console.log(i, modulo);
+      if (modulo != 0) {
+        newData[i].added = true;
+      }
+      i++;
+    }
+    updateData(newData);
   }, []);
 
   //need to implement a state that stores which cards are selected to be on the right.

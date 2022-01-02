@@ -51,7 +51,7 @@ const CardList = (props) => {
             descriptionShort={item.descriptionShort}
             descriptionLong={item.descriptionLong}
             added={item.added}
-            handleClick={() => handleClick(item)}
+            handleClick={() => handleClick(item, true)}
             isExpanded={allExpanded}
           />
         ))}

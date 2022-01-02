@@ -20,7 +20,7 @@ function IndexPage() {
   let testArray = [
     {
       id: 1,
-      title: 'Speak Up:',
+      title: 'Speak Up: 0 ',
       added: false,
       descriptionShort:
         'You know yourself best. It is OK to tell providers what they can do to make you comfortable. Think about what you will need and be ready to spell it out for them. Practice it out loud to boost your confidence.      ',
@@ -29,7 +29,7 @@ function IndexPage() {
     },
     {
       id: 2,
-      title: 'Card 2',
+      title: 'Card 1',
       added: false,
       descriptionShort: 'This is a short description',
       descriptionLong:
@@ -37,14 +37,14 @@ function IndexPage() {
     },
     {
       id: 3,
-      title: 'Card 3',
+      title: 'Card 2',
       added: false,
       descriptionShort: 'This is a short description',
       descriptionLong: 'This is a long description',
     },
     {
       id: 4,
-      title: 'Card 4',
+      title: 'Card 3',
       added: false,
       descriptionShort: 'This is a short description',
       descriptionLong:
