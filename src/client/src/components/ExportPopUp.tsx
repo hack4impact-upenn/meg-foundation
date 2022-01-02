@@ -44,7 +44,7 @@ const CancelButton = styled(Button)`
 const ExportButton = styled(Button)`
   position: absolute;
   top: 1rem;
-  right: 0px;
+  right: 30px;
 `;
 
 // Toggle components

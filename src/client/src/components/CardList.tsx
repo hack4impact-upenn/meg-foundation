@@ -3,38 +3,16 @@ import styled from 'styled-components';
 import Card from './Card.tsx';
 
 const screenWidth = window.screen.width;
-var displayWidth = screenWidth < 1280 ? '360px' : '680px';
-displayWidth = screenWidth > 1680 ? '680px' : displayWidth;
 
 const Container = styled.div`
   border-radius: 10px;
   max-height: calc(100vh - 6.75rem);
   overflow-y: scroll;
-  width: ${displayWidth};
   padding: 5px 10px;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
   padding-left: 20px;
-  position: relative;
-  @media screen and (max-width: 768px) {
-    max-width: 90vw;
-    padding: 0px 0px;
-    width: auto;
-    margin: 0px;
-    overflow-x: hidden;
-  }
-`;
-
-const ContainerPDF = styled.div`
-  border-radius: 10px;
-  overflow-y: scroll;
-  width: ${displayWidth};
-  padding: 5px 10px;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  padding: 20px;
   position: relative;
   @media screen and (max-width: 768px) {
     max-width: 90vw;
@@ -101,7 +79,9 @@ const CardList = (props) => {
   return (
     <div
       style={
-        screenWidth < 1280 ? { display: 'flex', justifyContent: 'center' } : {}
+        screenWidth < 1280
+          ? { display: 'flex', justifyContent: 'center' }
+          : { flexGrow: 1 }
       }
     >
       <header className="hero">
