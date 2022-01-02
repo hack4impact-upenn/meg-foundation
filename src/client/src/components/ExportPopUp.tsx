@@ -202,7 +202,11 @@ function ExportPopUp(props) {
       setEmailError(false);
       return 0;
     }
-    if (!email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/)) {
+    if (
+      !email.match(
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+      )
+    ) {
       setEmailError(true);
       return -1;
     }
@@ -244,16 +248,17 @@ function ExportPopUp(props) {
       }
     }
 
-    // if (e != 0) {
-    //   try {
-    //     await axios.post('api/email/', {
-    //       to: e,
-    //     });
-    //   } catch (err) {
-    //     setEmailError(true);
-    //     return;
-    //   }
-    // }
+    if (e != 0) {
+      try {
+        await axios.post('api/email/', {
+          to: e,
+          url: 'https://www.google.com/',
+        });
+      } catch (err) {
+        setEmailError(true);
+        return;
+      }
+    }
     setSuccess(true);
   };
 
