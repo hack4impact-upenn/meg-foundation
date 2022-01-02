@@ -8,7 +8,7 @@ const DualList = (props) => {
   const [data, setData] = useState(props.cardData);
   const [value, setValue] = useQueryString('plan', 0);
   //handleClick to change the status of the card
-  const handleClick = (target, edit) => {
+  const handleClick = (target) => {
     console.log('aaaa');
     const id = target.id;
     const newData = data.map((item) => {
@@ -23,17 +23,15 @@ const DualList = (props) => {
     });
     setData(newData);
 
-    if (edit) {
-      // generate enumeration
-      var num = 0;
-      newData.forEach((element, i) => {
-        if (element.added === true) {
-          num = num + 2 ** i;
-        }
-      });
+    // generate enumeration
+    var num = 0;
+    newData.forEach((element, i) => {
+      if (element.added === true) {
+        num = num + 2 ** i;
+      }
+    });
 
-      setValue(num);
-    }
+    setValue(num);
   };
 
   const updateData = (newData) => {
