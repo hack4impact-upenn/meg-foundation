@@ -28,7 +28,7 @@ const sendEmail = (email: Email) => {
   sgMail.send(email);
 };
 
-const sendDynamicEmail = (email: DynamicEmail) => {
+const sendDynamicEmail = async (email: DynamicEmail) => {
   if (!validateEmail(email.to)) throw new Error('Email validation failed.');
 
   const msg = {
@@ -37,8 +37,7 @@ const sendDynamicEmail = (email: DynamicEmail) => {
     templateId: email.templateId,
     dynamic_template_data: email.dynamic_template_data,
   };
-
-  sgMail.send(msg);
+  await sgMail.send(msg);
 };
 
 export { sendEmail, sendDynamicEmail };
