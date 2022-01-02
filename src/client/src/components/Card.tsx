@@ -22,7 +22,6 @@ const Container = styled.div`
   border-radius: 10px;
   height: auto;
   overflow: hidden;
-  width: ${displayWidth};
   padding: 20px;
   justify-content: center;
   margin: auto;
@@ -37,6 +36,15 @@ const Container = styled.div`
     padding: 8px;
     width: auto;
     margin: auto;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 430px;
+  }
+  @media screen and (min-width: 1216px) {
+    width: 520px;
+  }
+  @media screen and (min-width: 1408px) {
+    width: 560px;
   }
 `;
 
@@ -84,6 +92,12 @@ const InfoDiv = styled.div`
     margin-left: 16px;
     margin-bottom: 6px;
   }
+`;
+
+const Graphic = styled.img`
+  margin-right: 20px;
+  width: 200px;
+  height: 200px;
 `;
 
 const Card = (props) => {
@@ -181,10 +195,7 @@ const Card = (props) => {
               fontFamily: 'BrandonTextMedium',
             }}
           >
-            <img
-              src={placeholder_image}
-              style={{ width: '230px', height: '230px', marginRight: '20px' }}
-            />
+            <Graphic src={placeholder_image} />
             {descriptionShort ? descriptionShort : 'no description'}
           </div>
           {expanded && (

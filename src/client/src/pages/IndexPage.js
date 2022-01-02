@@ -63,6 +63,11 @@ function IndexPage() {
   //if the card is selected, it should be on the right and not on the left
   //if the card is not selected, it should be on the left and not on the right
 
+  // const IndexContainer = styled.div`
+  //   margin: auto;
+  //   @media screen and (max-width)
+  // `
+
   return (
     <div className="container center">
       {/* <header className="hero">
