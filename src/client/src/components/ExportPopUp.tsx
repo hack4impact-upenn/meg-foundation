@@ -4,7 +4,6 @@ import ReactModal from 'react-modal';
 import styled from 'styled-components';
 import DownloadFunction from '../components/DownloadFunction.js';
 import TextFunction from '../components/TextFunction.js';
-// import EmailPopUp from './EmailPopUp.tsx';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import '../styles/phoneInput.css';
