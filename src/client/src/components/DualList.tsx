@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import CardList from './CardList.tsx';
 import ExportPopUp from './ExportPopUp.tsx';
+import useQueryString from './useQueryString';
+import qs from 'query-string';
 
 const DualList = (props) => {
   const [data, setData] = useState(props.cardData);
-
+  const [value, setValue] = useQueryString('plan', 0);
   //handleClick to change the status of the card
   const handleClick = (target) => {
     const id = target.id;
@@ -21,7 +22,23 @@ const DualList = (props) => {
     });
 
     setData(newData);
+
+    // generate enumeration
+    var num = 0;
+    newData.forEach((element, i) => {
+      if (element.added === true) {
+        num = num + 2 ** i;
+      }
+    });
+    console.log(num);
+
+    setValue(num);
   };
+
+  useEffect(() => {
+    const parsed = qs.parse(location.search);
+    console.log(parsed);
+  }, []);
 
   //need to implement a state that stores which cards are selected to be on the right.
   //if the card is selected, it should be on the right and not on the left

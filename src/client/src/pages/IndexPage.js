@@ -1,8 +1,6 @@
 import { useQuery } from 'react-query';
 import api from '../api';
-import Card from '../components/Card.tsx';
 import DualList from '../components/DualList.tsx';
-import CardList from '../components/CardList.tsx';
 import styled from 'styled-components';
 
 function IndexPage() {
@@ -18,11 +16,6 @@ function IndexPage() {
   const header = styled.header`
     height: 20;
   `;
-
-  //handleClick to change the status of the card
-  // const handleClick = (array, id) => {
-  //   array[id].added = !array[id].added;
-  // };
 
   let testArray = [
     {
@@ -70,11 +63,6 @@ function IndexPage() {
 
   return (
     <div className="container center">
-      {/* <header className="hero">
-        <div className="hero-body" style={{ padding: "2rem 1.5rem" }}>
-          <h1 className="title">Welcome to Meg Foundation!</h1>
-        </div>
-      </header> */}
       <div>
         <DualList cardData={testArray}></DualList>
       </div>
