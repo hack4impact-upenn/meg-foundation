@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import SocialsList from './SocialsList.tsx';
-import colors from '../common/Colors';
-
 import more_icon from '../images/show_more.png';
 import less_icon from '../images/show_less.png';
 import plus_icon from '../images/plus.png';
 import minus_icon from '../images/minus.png';
 import placeholder_image from '../images/placeholder.png';
-import { boltzmannDependencies } from 'mathjs';
-import { placeholder } from '@babel/types';
 import '../fonts/Brandon Text/BrandonText-Black.otf';
 import '../fonts/Brandon Text/BrandonText-Regular.otf';
 import '../fonts/Brandon Text/BrandonText-Medium.otf';
@@ -122,11 +117,8 @@ const Card = (props) => {
         borderRadius: '10px',
       }}
     >
-      <Container
-      // onClick={() => handleClick()}
-      >
+      <Container>
         <div>
-          {/* <Titlebar> */}
           <div
             style={{
               display: 'flex',
@@ -185,7 +177,6 @@ const Card = (props) => {
           </div>
           <div
             style={{
-              // height: expanded ? 'auto' : '100px',
               overflow: 'hidden',
               fontSize: '18px',
               color: '#585858',
@@ -245,11 +236,6 @@ const Card = (props) => {
                 <span> Show More</span>
               </div>
             )}
-          </div>
-        </div>
-        <div className="is-pulled-left">
-          <div style={{ display: 'relative' }}>
-            {/* <LearnMore>Learn More</LearnMore> */}
           </div>
         </div>
       </Container>
