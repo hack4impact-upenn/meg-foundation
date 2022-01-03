@@ -28,54 +28,6 @@ const CardList = (props) => {
 
   const [renderedArray, setArray] = useState(data);
 
-  //render list of Cards
-
-  //handleClick method to pass to each card that will change the state of the cardlist by changing which cards are selected
-  // const handleClick = (id) => {
-  //   const newArray = renderedArray.map((card) => {
-  //     if (card.id === id) {
-  //       card.selected = !card.selected;
-  //     }
-  //     return card;
-  //   });
-  //   setArray(newArray);
-  // };
-
-  // const renderCards = () => {
-  //   if (props.side === 'left') {
-  //     return renderedArray.map((item, index) => {
-  //       if (!item.added) {
-  //         return (
-  //           <Card
-  //             key={index}
-  //             title={item.title}
-  //             descriptionShort={item.descriptionShort}
-  //             descriptionLong={item.descriptionLong}
-  //             added={item.added}
-  //             handleClick={props.handleClick(item)}
-  //           />
-  //         );
-  //       }
-  //     });
-  //   } else {
-  //     return renderedArray.map((item, index) => {
-  //       if (item.added) {
-  //         return (
-  //           <Card
-  //             key={index}
-  //             title={item.title}
-  //             descriptionShort={item.descriptionShort}
-  //             descriptionLong={item.descriptionLong}
-  //             added={item.added}
-  //             handleClick={props.handleClick(item)}
-  //           />
-  //         );
-  //       }
-  //     });
-  //   }
-
-  // };
-
   return (
     <div
       style={

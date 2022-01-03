@@ -1,8 +1,6 @@
 import { useQuery } from 'react-query';
 import api from '../api';
-import Card from '../components/Card.tsx';
 import DualList from '../components/DualList.tsx';
-import CardList from '../components/CardList.tsx';
 import styled from 'styled-components';
 
 function IndexPage() {
@@ -19,15 +17,10 @@ function IndexPage() {
     height: 20;
   `;
 
-  //handleClick to change the status of the card
-  // const handleClick = (array, id) => {
-  //   array[id].added = !array[id].added;
-  // };
-
   let testArray = [
     {
       id: 1,
-      title: 'Speak Up:',
+      title: 'Speak Up: 0 ',
       added: false,
       descriptionShort:
         'You know yourself best. It is OK to tell providers what they can do to make you comfortable. Think about what you will need and be ready to spell it out for them. Practice it out loud to boost your confidence.      ',
@@ -36,7 +29,7 @@ function IndexPage() {
     },
     {
       id: 2,
-      title: 'Card 2',
+      title: 'Card 1',
       added: false,
       descriptionShort: 'This is a short description',
       descriptionLong:
@@ -44,14 +37,14 @@ function IndexPage() {
     },
     {
       id: 3,
-      title: 'Card 3',
+      title: 'Card 2',
       added: false,
       descriptionShort: 'This is a short description',
       descriptionLong: 'This is a long description',
     },
     {
       id: 4,
-      title: 'Card 4',
+      title: 'Card 3',
       added: false,
       descriptionShort: 'This is a short description',
       descriptionLong:
@@ -70,11 +63,6 @@ function IndexPage() {
 
   return (
     <div className="container center">
-      {/* <header className="hero">
-        <div className="hero-body" style={{ padding: "2rem 1.5rem" }}>
-          <h1 className="title">Welcome to Meg Foundation!</h1>
-        </div>
-      </header> */}
       <div>
         <DualList cardData={testArray}></DualList>
       </div>
