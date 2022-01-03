@@ -4,19 +4,11 @@ import DualList from '../components/DualList.tsx';
 import styled from 'styled-components';
 
 function IndexPage() {
-  // Example API request with caching, fetch list of users.
-  // See https://react-query.tanstack.com/ for documentation on react-query.
-  const { isLoading, error, data } = useQuery('users', () =>
-    api.get('/api/users').then((res) => {
-      console.log(res);
-      return res.data;
-    })
-  );
-
   const header = styled.header`
     height: 20;
   `;
 
+  //TODO: ADD LINEBREAKS
   let testArray = [
     {
       id: 1,
