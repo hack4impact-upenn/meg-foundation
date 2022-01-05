@@ -184,6 +184,7 @@ const Card = (props) => {
               flexDirection: 'row',
               alignItems: 'center',
               fontFamily: 'BrandonTextMedium',
+              whiteSpace: 'pre-line',
             }}
           >
             <Graphic src={placeholder_image} />
@@ -196,6 +197,7 @@ const Card = (props) => {
                 color: '#585858',
                 marginTop: '20px',
                 fontFamily: 'BrandonTextMedium',
+                whiteSpace: 'pre-line',
               }}
             >
               {descriptionLong}
