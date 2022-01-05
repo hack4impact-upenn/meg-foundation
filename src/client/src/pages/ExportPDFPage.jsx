@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-// import SocialsList from './SocialsList.tsx';
 import colors from '../common/Colors';
 import PrintFunction from '../components/DownloadFunction.js';
-
 import more_icon from '../images/show_more.png';
 import less_icon from '../images/show_less.png';
 import plus_icon from '../images/plus.png';

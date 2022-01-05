@@ -6,7 +6,10 @@ import qs from 'query-string';
 
 const DualList = (props) => {
   const [data, setData] = useState(props.cardData);
+
+  // default plan to 0, no exported
   const [value, setValue] = useQueryString('plan', 0);
+
   //handleClick to change the status of the card
   const handleClick = (target) => {
     console.log('aaaa');
@@ -34,10 +37,12 @@ const DualList = (props) => {
     setValue(num);
   };
 
+  // function to update data to display cards from URL
   const updateData = (newData) => {
     setData(newData);
   };
 
+  // decode enumerated url
   useEffect(() => {
     const parsed = qs.parse(location.search);
     var newData = [...data];
@@ -55,10 +60,6 @@ const DualList = (props) => {
     }
     updateData(newData);
   }, []);
-
-  //need to implement a state that stores which cards are selected to be on the right.
-  //if the card is selected, it should be on the right and not on the left
-  //if the card is not selected, it should be on the left and not on the right
 
   return (
     <div>
