@@ -9,9 +9,8 @@ import minus_icon from '../images/minus.png';
 import placeholder_image from '../images/placeholder.png';
 import { boltzmannDependencies } from 'mathjs';
 import { placeholder } from '@babel/types';
-import '../fonts/Brandon Text/BrandonText-Black.otf';
-import '../fonts/Brandon Text/BrandonText-Regular.otf';
-import '../fonts/Brandon Text/BrandonText-Medium.otf';
+import fontNormal from '../fonts/Brandon Grotesque/Brandon_reg.otf';
+import fontBold from '../fonts/Brandon Grotesque/Brandon_bld.otf';
 
 import {
   Page,
@@ -22,14 +21,15 @@ import {
   StyleSheet,
   PDFViewer,
   Font,
+  Link,
 } from '@react-pdf/renderer';
 
 Font.register({
-  family: 'BrandonTextMedium',
-  src: '/fonts/Brandon Text/BrandonText-Medium.otf',
+  family: 'BrandonGrotesqueRegular',
+  src: fontNormal,
 });
 
-const selectedCardss = [
+const cardData = [
   {
     id: 1,
     title: 'Speak Up:',
@@ -66,9 +66,9 @@ const styles = StyleSheet.create({
     // maxWidth: '595pt',
     paddingTop: '20mm',
     paddingLeft: '20mm',
-    paddingRight: '30mm',
+    paddingRight: '20mm',
     paddingBottom: '15mm',
-    fontFamily: 'BrandonTextMedium',
+    fontFamily: 'BrandonGrotesqueRegular',
     // width: 'calc(595pt - 50mm)'
     // display: 'flex'
   },
@@ -77,10 +77,10 @@ const styles = StyleSheet.create({
     // justifyContent: 'space-between',
     fontSize: '14px',
     // color: '#585858',
-    marginLeft: '20px',
+    // marginLeft: '10px',
     marginTop: '10px',
-    marginBottom: '40px',
-    marginRight: '10px',
+    marginBottom: '20px',
+    // marginRight: '10px',
     flexGrow: 1,
     // display: 'flex'
   },
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: '16px',
+    textAlign: 'center',
     // fontFamily: 'BrandonTextMedium',
   },
   cardsList: {
@@ -121,19 +122,21 @@ const styles = StyleSheet.create({
 
 const PDFCard = ({ title, descriptionShort, descriptionLong }) => {
   return (
-    <View style={styles.card} wrap={false}>
-      <Text style={{ paddingBottom: '10px' }}>{title}</Text>
-      {/* Move wrap=false to view below in order to make it possible for cards to split with page breaks */}
-      <View style={styles.descriptionShort}>
-        <Image style={[styles.image]} src={placeholder_image} />
-        <Text
-          style={{
-            paddingLeft: '10px',
-            flexGrow: 1,
-          }}
-        >
-          {descriptionShort}
-        </Text>
+    <View style={styles.card}>
+      <View wrap={false}>
+        <Text style={{ paddingBottom: '10px' }}>{title}</Text>
+        {/* Move wrap=false to view below in order to make it possible for cards to split with page breaks */}
+        <View style={styles.descriptionShort}>
+          <Image style={[styles.image]} src={placeholder_image} />
+          <Text
+            style={{
+              paddingLeft: '10px',
+              flexGrow: 1,
+            }}
+          >
+            {descriptionShort}
+          </Text>
+        </View>
       </View>
       <Text style={styles.descriptionLong}>{descriptionLong}</Text>
     </View>
@@ -156,6 +159,11 @@ const PDFCardList = ({ selectedCards, title }) => {
         <Text>{title}</Text>
       </View>
       <View style={styles.cardsList}>{allCards}</View>
+      <View style={{ textAlign: 'center', fontSize: '11px' }}>
+        <Link src="https://www.megfoundationforpain.org/">
+          Want to Know More? Click Here
+        </Link>
+      </View>
     </View>
   );
 };
@@ -170,14 +178,14 @@ const PDF = ({ selectedCards }) => {
   );
 };
 
-const PDFView = ({ selectedCards }) => {
+const PDFView = () => {
   return (
     <div style={{ height: '100vh', width: '100vw' }}>
       <PDFViewer width="100%" height="100%">
-        <PDF cardData={cardData} />
+        <PDF selectedCards={cardData} />
       </PDFViewer>
     </div>
   );
 };
 
-export default PDF;
+export default PDFView;

@@ -7,6 +7,7 @@ import PublicRoute from './components/routing/PublicRoute';
 import { AuthContext } from './context';
 import IndexPage from './pages/IndexPage';
 import NotFoundPage from './pages/NotFoundPage';
+import PDFView from './pages/ExportPDFPage';
 
 const queryCache = new QueryCache();
 
@@ -52,6 +53,7 @@ function App() {
           <main>
             <Switch>
               <PublicRoute exact path="/" component={IndexPage} />
+              <PublicRoute exact path="/pdf" component={PDFView} />
               <Route exact={false} component={NotFoundPage} />
             </Switch>
           </main>
