@@ -6,6 +6,7 @@ import qs from 'query-string';
 
 const DualList = (props) => {
   const [data, setData] = useState(props.cardData);
+  console.log(props.cardData);
 
   // default plan to 0, no exported
   const [value, setValue] = useQueryString('plan', 0);

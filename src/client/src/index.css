@@ -1,24 +1,31 @@
 @font-face {
-  font-family: 'BrandonTextBlack';
-  src: local('BrandonTextBlack'),
-    url('./fonts/Brandon Text/BrandonText-Black.otf') format('opentype');
+  font-family: 'BrandonGrotesqueRegular';
+  src: local('BrandonGrotesqueRegular'),
+    url('./fonts/Brandon Grotesque/Brandon_reg.otf') format('opentype');
   font-weight: normal;
 }
 
 @font-face {
-  font-family: 'BrandonTextRegular';
-  src: local('BrandonTextRegular'),
-    url('./fonts/Brandon Text/BrandonText-Regular.otf') format('opentype');
+  font-family: 'BrandonGrotesqueBlack';
+  src: local('BrandonGrotesqueBlack'),
+    url('./fonts/Brandon Grotesque/Brandon_blk.otf') format('opentype');
   font-weight: normal;
 }
 
 @font-face {
-  font-family: 'BrandonTextMedium';
-  src: local('BrandonTextMedium'),
-    url('./fonts/Brandon Text/BrandonText-Medium.otf') format('opentype');
+  font-family: 'BrandonGrotesqueMedium';
+  src: local('BrandonGrotesqueMedium'),
+    url('./fonts/Brandon Grotesque/Brandon_med.otf') format('opentype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'BrandonGrotesqueBold';
+  src: local('BrandonGrotesqueBold'),
+    url('./fonts/Brandon Grotesque/Brandon_bld.otf') format('opentype');
   font-weight: normal;
 }
 
 body {
-  font-family: BrandonTextBlack;
+  font-family: BrandonGrotesqueBlack;
 }

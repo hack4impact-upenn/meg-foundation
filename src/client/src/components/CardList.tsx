@@ -49,7 +49,9 @@ const CardList = (props) => {
             key={id}
             title={item.title}
             descriptionShort={item.descriptionShort}
-            descriptionLong={item.descriptionLong}
+            whyItWorks={item.whyItWorks}
+            steps={item.steps}
+            whatYouCanSay={item.whatYouCanSay}
             added={item.added}
             handleClick={() => handleClick(item)}
             isExpanded={allExpanded}
