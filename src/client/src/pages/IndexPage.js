@@ -8,6 +8,25 @@ function IndexPage() {
     height: 20;
   `;
 
+  // This variable contains the list of cards used in the project. Cards are objects that have 7 fields.
+  // id: id is a UNIQUE id for each card. Note that the programmer must guarantee that each id is unique
+  // added: a field that determines if a card's initial state is added to the plan or not. Default value should be false
+  // descriptionShort: The short description that appears next to a card's image. In order to allow for hyperlinks within the text and the pdf, this data field is an array (a list).
+  // The array contains two types of elements. The first is simply text, the second is an object which contains to fields: the text which will contain a hyperlink and the url for the hyperlink.
+  // Example: descriptionShort:
+  // [
+  // 'some text.
+  //  some text after a line break with an intentional space after ',
+  //   {
+  //     text: `this text has a hyperlink`,
+  //     url: 'https://hyperlink.com/',
+  //   },
+  // ' some more text preceded by an intentional white space.'
+  // ],
+  // whyItWorks: A description of why the method works. This appears in the expanded view of the card after a bolded 'Why it works: '. The data type follows the that of shortDescription. If whyItWorks is not included, it will not appear on the card.
+  // steps: A description of the steps needed for the method. This appears in the expanded view of the card after a bolded 'The steps: '. The data type follows the that of shortDescription. If steps is not included, it will not appear on the card.
+  // whatYouCanSay: A description of what a user can say to a their practitioner. This appears in the expanded view of the card after a bolded 'What you can say: '. The data type follows the that of shortDescription. If whatYouCanSay is not included, it will not appear on the card.
+
   let cardData = [
     {
       id: 1,
