@@ -3,14 +3,11 @@ import styled from 'styled-components';
 import Card from './Card.tsx';
 
 const screenWidth = window.screen.width;
-var displayWidth = screenWidth < 1280 ? '360px' : '680px';
-displayWidth = screenWidth > 1680 ? '680px' : displayWidth;
 
 const Container = styled.div`
   border-radius: 10px;
   max-height: calc(100vh - 6.75rem);
   overflow-y: scroll;
-  width: ${displayWidth};
   padding: 5px 10px;
   justify-content: center;
   align-items: center;
@@ -27,62 +24,16 @@ const Container = styled.div`
 `;
 
 const CardList = (props) => {
-  const { data, handleClick, title } = props;
+  const { data, handleClick, title, allExpanded } = props;
 
   const [renderedArray, setArray] = useState(data);
-
-  //render list of Cards
-
-  //handleClick method to pass to each card that will change the state of the cardlist by changing which cards are selected
-  // const handleClick = (id) => {
-  //   const newArray = renderedArray.map((card) => {
-  //     if (card.id === id) {
-  //       card.selected = !card.selected;
-  //     }
-  //     return card;
-  //   });
-  //   setArray(newArray);
-  // };
-
-  // const renderCards = () => {
-  //   if (props.side === 'left') {
-  //     return renderedArray.map((item, index) => {
-  //       if (!item.added) {
-  //         return (
-  //           <Card
-  //             key={index}
-  //             title={item.title}
-  //             descriptionShort={item.descriptionShort}
-  //             descriptionLong={item.descriptionLong}
-  //             added={item.added}
-  //             handleClick={props.handleClick(item)}
-  //           />
-  //         );
-  //       }
-  //     });
-  //   } else {
-  //     return renderedArray.map((item, index) => {
-  //       if (item.added) {
-  //         return (
-  //           <Card
-  //             key={index}
-  //             title={item.title}
-  //             descriptionShort={item.descriptionShort}
-  //             descriptionLong={item.descriptionLong}
-  //             added={item.added}
-  //             handleClick={props.handleClick(item)}
-  //           />
-  //         );
-  //       }
-  //     });
-  //   }
-
-  // };
 
   return (
     <div
       style={
-        screenWidth < 1280 ? { display: 'flex', justifyContent: 'left' } : {}
+        screenWidth < 1280
+          ? { display: 'flex', justifyContent: 'center' }
+          : { flexGrow: 1 }
       }
     >
       <header className="hero">
@@ -98,9 +49,12 @@ const CardList = (props) => {
             key={id}
             title={item.title}
             descriptionShort={item.descriptionShort}
-            descriptionLong={item.descriptionLong}
+            whyItWorks={item.whyItWorks}
+            steps={item.steps}
+            whatYouCanSay={item.whatYouCanSay}
             added={item.added}
             handleClick={() => handleClick(item)}
+            isExpanded={allExpanded}
           />
         ))}
       </Container>

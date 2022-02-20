@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import SocialsList from './SocialsList.tsx';
-import colors from '../common/Colors';
-
 import more_icon from '../images/show_more.png';
 import less_icon from '../images/show_less.png';
 import plus_icon from '../images/plus.png';
 import minus_icon from '../images/minus.png';
 import placeholder_image from '../images/placeholder.png';
-import '../index.css';
-import { boltzmannDependencies } from 'mathjs';
-import { placeholder } from '@babel/types';
-import '../fonts/Brandon Text/BrandonText-Black.otf';
-import '../fonts/Brandon Text/BrandonText-Regular.otf';
-import '../fonts/Brandon Text/BrandonText-Medium.otf';
+import '../fonts/Brandon Grotesque/Brandon_reg.otf';
+import '../fonts/Brandon Grotesque/Brandon_med.otf';
+import '../fonts/Brandon Grotesque/Brandon_blk.otf';
+import '../fonts/Brandon Grotesque/Brandon_bld.otf';
 
 const screenWidth = window.screen.width;
 var displayWidth = screenWidth < 1280 ? '320px' : '560px';
@@ -23,11 +18,10 @@ const Container = styled.div`
   border-radius: 10px;
   height: auto;
   overflow: hidden;
-  width: ${displayWidth};
   padding: 20px;
   justify-content: center;
   margin: auto;
-  cursor: pointer;
+  cursor: default;
   align-items: center;
   box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.1);
   &:hover {
@@ -39,10 +33,19 @@ const Container = styled.div`
     width: auto;
     margin: auto;
   }
+  @media screen and (min-width: 1024px) {
+    width: 430px;
+  }
+  @media screen and (min-width: 1216px) {
+    width: 520px;
+  }
+  @media screen and (min-width: 1408px) {
+    width: 560px;
+  }
 `;
 
 const Button = styled.div`
-  font-family: BrandonTextBlack;
+  font-family: BrandonGrotesqueBlack;
   font-size: 14px;
   font-style: normal;
   line-height: 19px;
@@ -89,15 +92,66 @@ const InfoDiv = styled.div`
   }
 `;
 
+const Graphic = styled.img`
+  margin-right: 20px;
+  width: 200px;
+  height: 200px;
+  float: left;
+`;
+
 const Card = (props) => {
-  const { title, descriptionShort, descriptionLong, added, handleClick } =
-    props;
-  console.log(props);
-  const [expanded, setExpanded] = useState(false);
+  const {
+    title,
+    descriptionShort,
+    whyItWorks,
+    steps,
+    whatYouCanSay,
+    added,
+    handleClick,
+    isExpanded,
+  } = props;
+  const [expanded, setExpanded] = useState(isExpanded);
+
+  let descriptionShortText = descriptionShort;
+  for (let i = 0; i < descriptionShortText.length; i++) {
+    const curr = descriptionShortText[i];
+    if (curr.url) {
+      descriptionShortText[i] = <a href={curr.url}>{curr.text}</a>;
+    }
+  }
+
+  let whyItWorksText = whyItWorks;
+  if (whyItWorks) {
+    for (let i = 0; i < whyItWorksText.length; i++) {
+      const curr = whyItWorksText[i];
+      if (curr.url) {
+        whyItWorksText[i] = <a href={curr.url}>{curr.text}</a>;
+      }
+    }
+  }
+
+  let stepsText = steps;
+  if (steps) {
+    for (let i = 0; i < stepsText.length; i++) {
+      const curr = stepsText[i];
+      if (curr.url) {
+        stepsText[i] = <a href={curr.url}>{curr.text}</a>;
+      }
+    }
+  }
+
+  let whatYouCanSayText = whatYouCanSay;
+  if (whatYouCanSay) {
+    for (let i = 0; i < whatYouCanSayText.length; i++) {
+      const curr = whatYouCanSayText[i];
+      if (curr.url) {
+        whatYouCanSayText[i] = <a href={curr.url}>{curr.text}</a>;
+      }
+    }
+  }
 
   return (
     <div
-      id={'card'}
       className={screenWidth < 1280 ? '' : `is-pulled-left`}
       style={
         screenWidth < 1280
@@ -116,11 +170,8 @@ const Card = (props) => {
             }
       }
     >
-      <Container
-      // onClick={() => handleClick()}
-      >
+      <Container>
         <div>
-          {/* <Titlebar> */}
           <div
             style={{
               display: 'flex',
@@ -151,7 +202,11 @@ const Card = (props) => {
               >
                 <img
                   src={minus_icon}
-                  style={{ width: '16px', height: '16px', marginRight: '6px' }}
+                  style={{
+                    width: '16px',
+                    height: '16px',
+                    marginRight: '6px',
+                  }}
                 />
                 Remove
               </Button>
@@ -170,39 +225,36 @@ const Card = (props) => {
               >
                 <img
                   src={plus_icon}
-                  style={{ width: '16px', height: '16px', marginRight: '6px' }}
+                  style={{
+                    width: '16px',
+                    height: '16px',
+                    marginRight: '6px',
+                  }}
                 />
                 Add to Plan
               </Button>
             )}
-
-            {/* REMOVED DIV */}
-            {/* </div> */}
           </div>
-
           <div
             style={{
-              // height: expanded ? 'auto' : '100px',
               overflow: 'hidden',
               fontSize: '18px',
               color: '#585858',
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              fontFamily: 'BrandonTextMedium',
+              // display: 'flex',
+              // flexDirection: 'row',
+              // alignItems: 'center',
+              fontFamily: 'BrandonGrotesqueMedium',
+              whiteSpace: 'pre-line',
             }}
           >
-            {/* {window.screen.width > 1280 ? ( */}
-            {window.screen.width > 1280 ? (
-              <img
-                src={placeholder_image}
-                style={{ width: '230px', height: '230px', marginRight: '20px' }}
-              />
+            <div>
+              <Graphic src={placeholder_image} />
+            </div>
+            {descriptionShortText ? (
+              <div> {descriptionShortText}</div>
             ) : (
-              ''
+              'no description'
             )}
-
-            {descriptionShort ? descriptionShort : 'no description'}
           </div>
           {expanded && (
             <div
@@ -210,10 +262,37 @@ const Card = (props) => {
                 fontSize: '18px',
                 color: '#585858',
                 marginTop: '20px',
-                fontFamily: 'BrandonTextMedium',
+                fontFamily: 'BrandonGrotesqueMedium',
+                whiteSpace: 'pre-line',
               }}
             >
-              {descriptionLong}
+              {whyItWorksText ? (
+                <div style={{ marginBottom: '10px' }}>
+                  {' '}
+                  <span style={{ fontFamily: `BrandonGrotesqueBold` }}>
+                    Why it works:{' '}
+                  </span>{' '}
+                  {whyItWorksText}{' '}
+                </div>
+              ) : null}
+              {stepsText ? (
+                <div style={{ marginBottom: '10px' }}>
+                  {' '}
+                  <span style={{ fontFamily: `BrandonGrotesqueBold` }}>
+                    The steps:{' '}
+                  </span>{' '}
+                  {stepsText}{' '}
+                </div>
+              ) : null}
+              {whatYouCanSayText ? (
+                <div style={{ marginBottom: '10px' }}>
+                  {' '}
+                  <span style={{ fontFamily: `BrandonGrotesqueBold` }}>
+                    What you can say:{' '}
+                  </span>{' '}
+                  {whatYouCanSayText}{' '}
+                </div>
+              ) : null}
             </div>
           )}
           <div
@@ -223,7 +302,6 @@ const Card = (props) => {
               display: 'flex',
               justifyContent: 'space-around',
               fontSize: '18px',
-
               alignItems: 'center',
               color: '#ACACAC',
             }}
@@ -234,6 +312,7 @@ const Card = (props) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   alignContent: 'center',
+                  cursor: 'pointer',
                 }}
               >
                 <img src={less_icon} />
@@ -245,17 +324,13 @@ const Card = (props) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginTop: '15px',
+                  cursor: 'pointer',
                 }}
               >
                 <img src={more_icon} />
                 <span> Show More</span>
               </div>
             )}
-          </div>
-        </div>
-        <div className="is-pulled-left">
-          <div style={{ display: 'relative' }}>
-            {/* <LearnMore>Learn More</LearnMore> */}
           </div>
         </div>
       </Container>

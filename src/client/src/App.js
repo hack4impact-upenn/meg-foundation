@@ -1,21 +1,22 @@
 import { useMemo, useState } from 'react';
 import { QueryCache, ReactQueryCacheProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query-devtools';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import auth from './api/auth';
 import AppContainer from './components/AppContainer';
 import PublicRoute from './components/routing/PublicRoute';
-import PrivateRoute from './components/routing/PrivateRoute';
 import { AuthContext } from './context';
-
-// import pages
-import LoginPage from './pages/authflow/LoginPage';
-import RegisterPage from './pages/authflow/RegisterPage';
 import IndexPage from './pages/IndexPage';
 import NotFoundPage from './pages/NotFoundPage';
-import DashboardPage from './pages/DashboardPage';
+// import PDFView from './pages/ExportPDFPage';
 
 const queryCache = new QueryCache();
+
+function getParams(location) {
+  const searchParams = new URLSearchParams(location.search);
+  return {
+    query: searchParams.get('query') || '',
+  };
+}
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -40,6 +41,11 @@ function App() {
     [isAuthenticated]
   );
 
+  const MainPage = (props) => {
+    let query = '';
+    return <h2>{`Query : ${query}`}</h2>;
+  };
+
   return (
     <AuthContext.Provider value={authContextValue}>
       <Router>
@@ -47,9 +53,7 @@ function App() {
           <main>
             <Switch>
               <PublicRoute exact path="/" component={IndexPage} />
-              <PublicRoute exact path="/login" component={LoginPage} />
-              <PublicRoute exact path="/register" component={RegisterPage} />
-              <PrivateRoute exact path="/dashboard" component={DashboardPage} />
+              {/* <PublicRoute exact path="/pdf" component={PDFView} /> */}
               <Route exact={false} component={NotFoundPage} />
             </Switch>
           </main>
