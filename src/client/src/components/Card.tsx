@@ -8,6 +8,7 @@ import less_icon from '../images/show_less.png';
 import plus_icon from '../images/plus.png';
 import minus_icon from '../images/minus.png';
 import placeholder_image from '../images/placeholder.png';
+import '../index.css';
 import { boltzmannDependencies } from 'mathjs';
 import { placeholder } from '@babel/types';
 import '../fonts/Brandon Text/BrandonText-Black.otf';
@@ -67,7 +68,7 @@ const Button = styled.div`
     text-align: right;
     margin: auto;
     float: right;
-    margin-left: auto;
+    margin-right: 0;
   }
 `;
 
@@ -130,7 +131,9 @@ const Card = (props) => {
               marginBottom: '20px',
             }}
           >
-            <div>{title ? title : 'NEED TITLE'}</div>
+            {/* REMOVED DIV: */}
+            {/* <div> */}
+            {title ? title : 'NEED TITLE'}
             {added ? (
               <Button
                 style={{
@@ -144,6 +147,7 @@ const Card = (props) => {
                   color: '#FF453A',
                 }}
                 onClick={handleClick}
+                className="cardButton"
               >
                 <img
                   src={minus_icon}
@@ -162,6 +166,7 @@ const Card = (props) => {
                   height: '32px',
                 }}
                 onClick={handleClick}
+                className="cardButton"
               >
                 <img
                   src={plus_icon}
@@ -171,17 +176,10 @@ const Card = (props) => {
               </Button>
             )}
 
-            {/* </Titlebar> */}
+            {/* REMOVED DIV */}
+            {/* </div> */}
           </div>
-          {/* <div
-            style={{
-              height: '2px',
-              width: '75px',
-              backgroundColor: '#82B500',
-              marginLeft: '10px',
-              marginRight: '10px',
-            }}
-          /> */}
+
           <div
             style={{
               // height: expanded ? 'auto' : '100px',

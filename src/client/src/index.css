@@ -22,3 +22,23 @@
 body {
   font-family: BrandonTextBlack;
 }
+
+.Modal {
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  width: 80%;
+}
+/* 
+@media (min-width: 728px) {
+  .cardButton {
+    font-size: '14px';
+    display: 'flex';
+    flex-direction: 'row';
+    float: 'right';
+    margin-right:'0';
+    height: '32px';
+    
+  }
+  
+} */
