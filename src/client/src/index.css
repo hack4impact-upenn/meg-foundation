@@ -29,3 +29,28 @@
 body {
   font-family: BrandonGrotesqueBlack;
 }
+
+.Modal {
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  width: 80%;
+}
+
+@media (min-width: 768px) {
+  .Modal {
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    width: 80%;
+  }
+}
+
+@media (min-width: 900px) {
+  .Modal {
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    width: 80%;
+  }
+}
