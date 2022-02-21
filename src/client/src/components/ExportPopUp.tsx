@@ -270,6 +270,7 @@ function ExportPopUp(props) {
         {props.title}
       </ExportButton>
       <ReactModal
+        className="Modal"
         isOpen={modalIsOpen}
         style={customModalStyles}
         contentLabel="Export Modal"
@@ -304,7 +305,14 @@ function ExportPopUp(props) {
               }}
             >
               <h1 style={{ fontWeight: 'bold' }}>Export Your Plan</h1>
-              <CancelButton onClick={closeModal}>
+              <CancelButton
+                style={{
+                  position: 'absolute',
+                  top: 5,
+                  right: 5,
+                }}
+                onClick={closeModal}
+              >
                 <i
                   className="fas fa-times fa-fw"
                   style={{ color: 'white' }}
@@ -312,6 +320,7 @@ function ExportPopUp(props) {
                 Cancel
               </CancelButton>
             </div>
+
             <div>Export a summary of your plan</div>
           </div>
 
