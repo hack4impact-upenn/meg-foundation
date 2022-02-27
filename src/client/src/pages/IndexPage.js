@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
 import api from '../api';
-import ExportPopUp from '../components/ExportPopUp.tsx';
-import Card from '../components/Card.tsx';
+//import ExportPopUp from '../components/ExportPopUp.tsx';
+//import Card from '../components/Card.js';
 import DualList from '../components/DualList.tsx';
 import MobileList from '../components/MobileList.tsx';
-import CardList from '../components/CardList.tsx';
+//import CardList from '../components/CardList.tsx';
 import styled from 'styled-components';
 
 function IndexPage() {

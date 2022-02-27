@@ -4,11 +4,23 @@ import more_icon from '../images/show_more.png';
 import less_icon from '../images/show_less.png';
 import plus_icon from '../images/plus.png';
 import minus_icon from '../images/minus.png';
+
 import placeholder_image from '../images/placeholder.png';
+import block_image from '../images/block_250x250.png';
+import breathe_image from '../images/breathe_NOTEXT_250x250.png';
+import connect_image from '../images/connect_250x250.png';
+import distract_image from '../images/distract_250x250.png';
+import faint_image from '../images/faint_250x250.png';
+import filter_image from '../images/filter_250x250.png';
+import reward_image from '../images/reward_250x250.png';
+import speakup_image from '../images/speakup_250x250.png';
+import touch_image from '../images/touch_250x250.png';
+
 import '../fonts/Brandon Grotesque/Brandon_reg.otf';
 import '../fonts/Brandon Grotesque/Brandon_med.otf';
 import '../fonts/Brandon Grotesque/Brandon_blk.otf';
 import '../fonts/Brandon Grotesque/Brandon_bld.otf';
+import { filter } from 'mathjs';
 
 const screenWidth = window.screen.width;
 var displayWidth = screenWidth < 1280 ? '320px' : '560px';
@@ -148,6 +160,27 @@ const Card = (props) => {
     }
   }
 
+  let imageName = placeholder_image;
+  if (title === 'Speak Up:') {
+    imageName = speakup_image;
+  } else if (title === 'Block:') {
+    imageName = block_image;
+  } else if (title === 'Distract:') {
+    imageName = distract_image;
+  } else if (title === 'Breathe') {
+    imageName = breathe_image;
+  } else if (title === 'Connect:') {
+    imageName = connect_image;
+  } else if (title === 'Touch:') {
+    imageName = touch_image;
+  } else if (title === 'Filter:') {
+    imageName = filter_image;
+  } else if (title === 'Reward:') {
+    imageName = reward_image;
+  } else if (title === 'Feeling Faint?') {
+    imageName = faint_image;
+  }
+
   return (
     <div
       className={screenWidth < 1280 ? '' : `is-pulled-left`}
@@ -230,7 +263,7 @@ const Card = (props) => {
             }}
           >
             <div>
-              <Graphic src={placeholder_image} />
+              <Graphic src={imageName} />
             </div>
             {descriptionShortText ? (
               <div> {descriptionShortText}</div>
