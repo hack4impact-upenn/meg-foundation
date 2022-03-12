@@ -167,7 +167,7 @@ const Card = (props) => {
     imageName = block_image;
   } else if (title === 'Distract:') {
     imageName = distract_image;
-  } else if (title === 'Breathe') {
+  } else if (title === 'Breathe:') {
     imageName = breathe_image;
   } else if (title === 'Connect:') {
     imageName = connect_image;
